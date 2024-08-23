@@ -1,9 +1,11 @@
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
 
 export const Main = () => {
   return (
-    <div className="grid md:grid-cols-3 grid-cols-1 md:gap-12 gap-8">
+    <div className="grid md:grid-cols-3 grid-cols-1 md:gap-12 gap-8 md:px-12 px-8">
       <div className="col-span-2 flex flex-col md:gap-y-12 gap-y-6 md:items-start items-center">
         <div className="text-textColor md:text-6xl text-4xl font-urbanist font-medium">
           The Best Online <br /> Resume Builder
@@ -21,11 +23,23 @@ export const Main = () => {
         </button>
         <div className="flex items-center font-urbanist">
           <div className="flex flex-col pr-6 border-r border-indigo-600 items-center gap-y-2 bg-gradient-to-r from-primaryColor to-indigo-600 text-transparent bg-clip-text">
-            <div className="md:text-4xl text-3xl font-bold">2x</div>
+            <div className="md:text-4xl text-3xl font-bold flex gap-x-2 items-center">
+              <FontAwesomeIcon
+                icon={faArrowUp}
+                className="text-primaryColor w-7 h-7"
+              />
+              2x
+            </div>
             <div className="md:text-xl text-lg">more reviews</div>
           </div>
           <div className="flex flex-col items-center pl-6 gap-y-2 bg-gradient-to-r from-primaryColor to-indigo-600 text-transparent bg-clip-text">
-            <div className="md:text-4xl text-3xl font-bold">25%</div>
+            <div className="md:text-4xl text-3xl font-bold flex gap-x-2 items-center">
+              <FontAwesomeIcon
+                icon={faArrowUp}
+                className="text-primaryColor w-7 h-7"
+              />
+              25%
+            </div>
             <div className="md:text-xl text-lg">more job offers</div>
           </div>
         </div>

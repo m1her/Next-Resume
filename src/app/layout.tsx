@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jost.variable} ${urbanist.variable}`}>
         <NavBar />
-        <div className="md:pt-28 pt-20 md:px-12 px-8">{children}</div>
+        <div className="md:pt-28 pt-20">{children}</div>
       </body>
     </html>
   );
