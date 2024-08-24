@@ -21,6 +21,7 @@ const config: Config = {
         urbanist: ["var(--font-urbanist)"],
         jost: ["var(--font-jost)"],
         notoserifgeorgian: ["var(--font-notoserifgeorgian)"],
+        roboto: ["var(--font-roboto)"],
       },
     },
   },

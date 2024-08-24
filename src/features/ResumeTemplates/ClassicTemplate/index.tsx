@@ -10,12 +10,12 @@ export const ClassicTemplate = ({
   return (
     <div className="w-full max-w-[800px] mx-auto p-8 font-notoserifgeorgian text-black bg-white">
       <div id="header" className="text-center">
-        <div className={`${color} font-bold text-4xl`}>Maher Nassrallah</div>
+        <div className={`${color} font-bold text-4xl`}>Your Name</div>
         <div className="text-black/60 font-semibold text-xl mt-2">
-          Frontend Developer
+          Job Title
         </div>
         <div className="mt-4 text-black text-base">
-          +20 111 036 8913 | maher.ple2@gmail.com | Cairo, Egypt
+          +20 000 000 0000 | my-email@example.com | City, Country
         </div>
       </div>
 
@@ -24,12 +24,11 @@ export const ClassicTemplate = ({
           Summary
         </div>
         <div className="mt-2 text-black text-justify">
-          As a passionate and dedicated Software Engineer with 1 year of
-          experience in React, Next.js, Tailwind CSS, and Firebase, I am
-          committed to delivering high-quality, efficient, and innovative web
-          solutions. My strong problem-solving skills, collaborative teamwork,
-          and continuous learning mindset ensure my ability to contribute to the
-          company’s growth and success.
+          Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh ijkl
+          mnopqr stuvw xyzab cdefg hijkl mnopq rstuvw xyza bcd efg hij klmno
+          pqrs tuvwx yzabc defgh ijkl mnop qrst uvwx yzab cdefg hijkl mnopq rst
+          uvwx yzabc defghi jklmnopq rs tuvwx yzab cdefgh ijklmn opqrs tuvwx
+          yzabcdefg hijkl mnopqrst uvwxy zabcde.
         </div>
       </div>
 
@@ -38,15 +37,17 @@ export const ClassicTemplate = ({
           Skills
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
-          {["HTML5", "CSS3", "JavaScript", "React.js", "Next.js", "Tailwind CSS"].map((skill) => (
-            <div className="flex items-center" key={skill}>
-              <FontAwesomeIcon
-                icon={faCheck}
-                className="text-green-500 w-4 h-4 mr-2"
-              />
-              {skill}
-            </div>
-          ))}
+          {["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"].map(
+            (skill) => (
+              <div className="flex items-center" key={skill}>
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="text-green-500 w-4 h-4 mr-2"
+                />
+                {skill}
+              </div>
+            )
+          )}
         </div>
       </div>
 
@@ -56,25 +57,32 @@ export const ClassicTemplate = ({
         </div>
         <div className="mt-4">
           <div className="flex justify-between">
-            <div className="text-lg font-medium">Awtar Tech</div>
-            <div className="text-black/70">Gaza, Palestine – On-site</div>
+            <div className="text-lg font-medium">Company Name</div>
+            <div className="text-black/70">Location - Type</div>
           </div>
           <div className="text-black/70 text-sm flex justify-between">
-            <div>Frontend/React.js Engineer (Trainee)</div>
-            <div>Jul/2018 – Sep/2023</div>
+            <div>Experience Role</div>
+            <div>Start – End</div>
           </div>
           <ul className="list-disc list-inside mt-2 text-black">
             <li>
-              Achieved a percentage of 85.16%, graduating with a second honor
-              degree.
+              Xyloz qwerty at 73.29%, completed a prime level achievement.
             </li>
             <li>
-              Developed reusable components using React.js, improving the codebases maintainability.
+              Assembled modular frameworks with Zyx.js, enhancing project
+              adaptability.
             </li>
             <li>
-              Collaborated with the design team to implement responsive and user-friendly UI.
+              Partnered with the strategy crew to craft intuitive and
+              interactive designs.
             </li>
           </ul>
+          <div className="mt-2">
+            <div className="font-medium">Key Tech and Tools:</div>
+            <div className="text-black/70 text-sm">
+              Skill1, Skill2, Skill3, Skill4, Skill5.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -84,31 +92,25 @@ export const ClassicTemplate = ({
         </div>
         <div className="mt-4">
           <div className="flex justify-between">
-            <div className="text-lg font-medium">Skill Link</div>
-            <div className="text-black/70 text-sm">30/Jul/2024</div>
+            <div className="text-lg font-medium">Project Title</div>
+            <div className="text-black/70 text-sm">Complete Date</div>
           </div>
           <div className="mt-2 text-black">
-            Innovative platform designed to connect individuals seeking to learn
-            from professionals and experts eager to share their knowledge.
+            Wqerui opasd fjkl zxcvbnm rtyuio p;lkjh gfdsa qwer asdfg hjuik mnvb
+            cdefgh klmno pqrs tuv wxyz abc def ghi jkl mnop qrst uvw asdwhh.
           </div>
           <div className="flex flex-col mt-2">
             <div className="font-medium">Key Features:</div>
             <ul className="list-disc list-inside mt-1 text-black">
-              <li>
-                Integrated real-time chat functionality using Firebase.
-              </li>
-              <li>
-                Implemented user authentication and authorization with Next.js and Firebase.
-              </li>
-              <li>
-                Designed responsive layouts with Tailwind CSS, ensuring a seamless user experience across devices.
-              </li>
+              <li>Qwerty zxcvb asd fghj klm nopq rty uio p;lk jhg fds a</li>
+              <li>Vbnm asdf ghjk lkjh p;io yu trvw xz abc def gh ijk</li>
+              <li>Lkjh qwer asd fghj k;l zxcv bnma sdfgh jkl mnop qwer</li>
             </ul>
           </div>
           <div className="mt-2">
             <div className="font-medium">Key Tech and Tools:</div>
             <div className="text-black/70 text-sm">
-              Next.js, Tailwind CSS, TypeScript, React Context, Firebase.
+              Skill1, Skill2, Skill3, Skill4, Skill5.
             </div>
           </div>
         </div>
@@ -125,8 +127,8 @@ export const ClassicTemplate = ({
               className="text-green-500 w-4 h-4 mr-2"
             />
             <div>
-              <span>Arabic</span>
-              <span className="text-black/70 ml-2">Native</span>
+              <span>Language</span>
+              <span className="text-black/70 ml-2">Level</span>
             </div>
           </div>
           <div className="flex items-center">
@@ -135,8 +137,8 @@ export const ClassicTemplate = ({
               className="text-green-500 w-4 h-4 mr-2"
             />
             <div>
-              <span>English</span>
-              <span className="text-black/70 ml-2">Advanced</span>
+              <span>Language</span>
+              <span className="text-black/70 ml-2">Level</span>
             </div>
           </div>
         </div>

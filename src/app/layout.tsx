@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { jost, notoserifgeorgian, urbanist } from "./fonts";
+import { jost, notoserifgeorgian, roboto, urbanist } from "./fonts";
 import "./globals.css";
+import { ResumeProvider } from "@/context/ResumeContext";
 
 export const metadata: Metadata = {
   title: "Next Resume",
@@ -14,8 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} ${urbanist.variable} ${notoserifgeorgian.variable}`}>
-        {children}
+      <body
+        className={`${jost.variable} ${urbanist.variable} ${notoserifgeorgian.variable} ${roboto.variable}`}
+      >
+        <ResumeProvider>{children}</ResumeProvider>
       </body>
     </html>
   );

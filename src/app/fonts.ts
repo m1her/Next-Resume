@@ -1,5 +1,10 @@
 // app/fonts.ts
-import { Urbanist, Jost, Merriweather, Noto_Serif_Georgian } from "next/font/google";
+import {
+  Urbanist,
+  Jost,
+  Noto_Serif_Georgian,
+  Roboto_Mono,
+} from "next/font/google";
 
 export const urbanist = Urbanist({
   subsets: ["latin"],
@@ -14,4 +19,9 @@ export const jost = Jost({
 export const notoserifgeorgian = Noto_Serif_Georgian({
   subsets: ["latin"],
   variable: "--font-notoserifgeorgian",
+});
+
+export const roboto = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-roboto",
 });
