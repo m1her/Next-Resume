@@ -6,21 +6,26 @@ export const SmallPreview = ({
   isSelected,
   name,
   disableAction = false,
+  defaultFont,
+  setFont,
 }: Readonly<{
   children: React.ReactNode;
   isSelected: boolean;
   name: "classic" | "twoCol";
   disableAction?: boolean;
+  defaultFont?: string;
+  setFont?: React.Dispatch<React.SetStateAction<string>>;
 }>) => {
   const { setResumeData } = useResumeContext();
 
   const setSelectedHandler = () => {
-    if (!disableAction) {
+    if (!disableAction && defaultFont && setFont) {
       setResumeData((prev) => ({
         ...prev,
         template: children,
         templateName: name,
       }));
+      setFont(defaultFont);
     }
   };
   return (

@@ -6,11 +6,20 @@ import { TwoColumnsTemplate } from "@/features/ResumeTemplates/TwoColumnsTemplat
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 export const ChooseTempFeat = () => {
-  const { resumeData } = useResumeContext();
-
+  const { resumeData, setResumeData } = useResumeContext();
+  const [font, setFont] = useState<string>(resumeData.fontType);
+  const router = useRouter();
+  const confirmTemplate = () => {
+    setResumeData((prev) => ({
+      ...prev,
+      fontType: font,
+    }));
+    router.push("/build-resume/customize-template");
+  };
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">
       <div className="md:text-4xl text-3xl text-center font-bold">
@@ -26,12 +35,16 @@ export const ChooseTempFeat = () => {
         <SmallPreview
           isSelected={resumeData.templateName == "classic"}
           name={"classic"}
+          defaultFont={"font-notoserifgeorgian"}
+          setFont={setFont}
         >
           <ClassicTemplate />
         </SmallPreview>
         <SmallPreview
           isSelected={resumeData.templateName == "twoCol"}
           name={"twoCol"}
+          defaultFont={"font-roboto"}
+          setFont={setFont}
         >
           <TwoColumnsTemplate />
         </SmallPreview>
@@ -46,12 +59,12 @@ export const ChooseTempFeat = () => {
           <FontAwesomeIcon icon={faChevronLeft} className="w-3 h-3" />
           Back
         </Link>
-        <Link
-          href="/build-resume/customize-template"
-          className="px-6 py-2 font-semibold text-lg text-white bg-secondaryColor rounded-full hover:bg-amber-500 transition-colors duration-300"
+        <div
+          className="px-6 py-2 font-semibold text-lg text-white bg-secondaryColor rounded-full hover:bg-amber-500 transition-colors duration-300 cursor-pointer"
+          onClick={confirmTemplate}
         >
           Choose Template
-        </Link>
+        </div>
       </div>
     </div>
   );

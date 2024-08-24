@@ -1,5 +1,7 @@
+import { useResumeContext } from "@/context/ResumeContext";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export const ClassicTemplate = ({
@@ -7,8 +9,17 @@ export const ClassicTemplate = ({
 }: {
   color?: string;
 }) => {
+  const path = usePathname();
+  const { resumeData } = useResumeContext();
+
   return (
-    <div className="w-full max-w-[800px] mx-auto p-8 font-notoserifgeorgian text-black bg-white">
+    <div
+      className={`w-full max-w-[800px] mx-auto p-8 ${
+        path.split("/")[2] != "choose-template"
+          ? resumeData.fontType
+          : "font-notoserifgeorgian"
+      } text-black bg-white`}
+    >
       <div id="header" className="text-center">
         <div className={`${color} font-bold text-4xl`}>Your Name</div>
         <div className="text-black/60 font-semibold text-xl mt-2">
@@ -38,8 +49,8 @@ export const ClassicTemplate = ({
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
           {["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"].map(
-            (skill) => (
-              <div className="flex items-center" key={skill}>
+            (skill, idx) => (
+              <div className="flex items-center" key={idx}>
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="text-green-500 w-4 h-4 mr-2"

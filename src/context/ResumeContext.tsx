@@ -5,7 +5,10 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface ResumeData {
   template: ReactNode;
   templateName: "classic" | "twoCol";
-  colorTheme: string;
+  colorTheme: {
+    color: string;
+    ring: string;
+  };
   fontType: string;
 }
 
@@ -17,8 +20,8 @@ interface ResumeContextType {
 const defaultResumeData: ResumeData = {
   template: <ClassicTemplate />,
   templateName: "classic",
-  colorTheme: "",
-  fontType: "",
+  colorTheme: { color: "#000000", ring: "ring-black" },
+  fontType: "font-notoserifgeorgian",
 };
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);

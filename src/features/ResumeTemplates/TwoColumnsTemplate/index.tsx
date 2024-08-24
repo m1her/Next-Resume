@@ -1,20 +1,25 @@
+import { useResumeContext } from "@/context/ResumeContext";
 import {
-  faCheck,
   faEnvelope,
   faGlobe,
   faLocationDot,
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-export const TwoColumnsTemplate = ({
-  color = "text-[#1f4e79]",
-}: {
-  color?: string;
-}) => {
+export const TwoColumnsTemplate = () => {
+  const path = usePathname();
+  const { resumeData } = useResumeContext();
   return (
-    <div className="w-full max-w-[1000px] mx-auto py-12 font-roboto text-gray-700 bg-white">
+    <div
+      className={`w-full max-w-[1000px] mx-auto py-12 ${
+        path.split("/")[2] != "choose-template"
+          ? resumeData.fontType
+          : "font-roboto"
+      } text-gray-700 bg-white`}
+    >
       <div id="header" className="text-center border-b mx-16 border-black pb-8">
         <div className={`font-light text-6xl`}>Your Name</div>
         <div className="text-black/80 text-2xl mt-2">Job Title</div>
