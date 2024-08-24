@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const LetsLandDreamJob = () => {
@@ -7,9 +8,12 @@ export const LetsLandDreamJob = () => {
       <div className="text-white md:text-7xl text-5xl font-bold text-center md:w-2/3 w-full">
         Let’s Land Your Dream Job Together
       </div>
-      <button className="md:px-8 px-6 md:py-4 py-3 text-white md:text-2xl text-xl font-semibold bg-gradient-to-br from-secondaryColor to-orange-500 rounded-lg hover:from-amber-500 hover:to-orange-600">
+      <Link
+        href="/build-resume/choose-template"
+        className="md:px-8 px-6 md:py-4 py-3 text-white md:text-2xl text-xl font-semibold bg-gradient-to-br from-secondaryColor to-orange-500 rounded-lg hover:from-amber-500 hover:to-orange-600"
+      >
         Start Your Resume Now
-      </button>
+      </Link>
       <div className="text-white text-lg font-bold text-center md:w-2/3 w-full">
         As seen in
       </div>

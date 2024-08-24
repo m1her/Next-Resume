@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export const TemplateDetailsSection = () => {
@@ -12,9 +13,12 @@ export const TemplateDetailsSection = () => {
             Choose one of our professional templates. You can easily change
             colors to any resume format you choose.
           </div>
-          <button className="md:text-xl text-base font-semibold md:w-fit w-full px-8 md:py-4 py-3 rounded bg-white text-primaryColor hover:bg-white/95 transition-colors duration-300">
+          <Link
+            href="/build-resume/choose-template"
+            className="md:text-xl text-base font-semibold md:w-fit w-full px-8 md:py-4 py-3 rounded bg-white text-primaryColor hover:bg-white/95 transition-colors duration-300"
+          >
             Create My Resume
-          </button>
+          </Link>
         </div>
       </div>
     </div>

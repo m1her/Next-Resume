@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { jost, urbanist } from "./fonts";
+import { jost, notoserifgeorgian, urbanist } from "./fonts";
 import "./globals.css";
-import { NavBar } from "@/components/NavBar";
 
 export const metadata: Metadata = {
   title: "Next Resume",
@@ -15,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} ${urbanist.variable}`}>
+      <body className={`${jost.variable} ${urbanist.variable} ${notoserifgeorgian.variable}`}>
         {children}
       </body>
     </html>

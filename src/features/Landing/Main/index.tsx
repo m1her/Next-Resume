@@ -1,6 +1,7 @@
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const Main = () => {
@@ -18,9 +19,12 @@ export const Main = () => {
           Easily create the perfect resume for any job using our best-in-class
           resume builder platform.
         </div>
-        <button className="text-white bg-gradient-to-r from-secondaryColor hover:from-amber-400 to-orange-500 hover:to-[#f96916] md:text-xl text-lg font-urbanist font-semibold px-6 py-4 rounded md:w-1/2 w-full">
+        <Link
+          href="/build-resume/choose-template"
+          className="text-white text-center bg-gradient-to-r from-secondaryColor hover:from-amber-400 to-orange-500 hover:to-[#f96916] md:text-xl text-lg font-urbanist font-semibold px-6 py-4 rounded md:w-1/2 w-full"
+        >
           Create My Resume Now
-        </button>
+        </Link>
         <div className="flex items-center font-urbanist">
           <div className="flex flex-col pr-6 border-r border-indigo-600 items-center gap-y-2 bg-gradient-to-r from-primaryColor to-indigo-600 text-transparent bg-clip-text">
             <div className="md:text-4xl text-3xl font-bold flex gap-x-2 items-center">

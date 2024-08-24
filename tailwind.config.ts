@@ -20,6 +20,7 @@ const config: Config = {
       fontFamily: {
         urbanist: ["var(--font-urbanist)"],
         jost: ["var(--font-jost)"],
+        notoserifgeorgian: ["var(--font-notoserifgeorgian)"],
       },
     },
   },
