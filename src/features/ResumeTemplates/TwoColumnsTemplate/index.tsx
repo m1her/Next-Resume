@@ -18,7 +18,13 @@ export const TwoColumnsTemplate = () => {
         path.split("/")[2] != "choose-template"
           ? resumeData.fontType
           : "font-roboto"
-      } text-gray-700 bg-white`}
+      } bg-white`}
+      style={{
+        color:
+          resumeData.colorTheme.color == ""
+            ? "#374151"
+            : resumeData.colorTheme.color,
+      }}
     >
       <div id="header" className="text-center border-b mx-16 border-black pb-8">
         <div className={`font-light text-6xl`}>Your Name</div>

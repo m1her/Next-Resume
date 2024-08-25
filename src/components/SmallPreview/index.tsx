@@ -7,25 +7,30 @@ export const SmallPreview = ({
   name,
   disableAction = false,
   defaultFont,
-  setFont,
+  defaultColors,
+  setDefaults,
 }: Readonly<{
   children: React.ReactNode;
   isSelected: boolean;
   name: "classic" | "twoCol";
   disableAction?: boolean;
   defaultFont?: string;
-  setFont?: React.Dispatch<React.SetStateAction<string>>;
+  defaultColors?: {
+    color: string;
+    ring: string;
+  };
+  setDefaults?: React.Dispatch<React.SetStateAction<any>>;
 }>) => {
   const { setResumeData } = useResumeContext();
 
   const setSelectedHandler = () => {
-    if (!disableAction && defaultFont && setFont) {
+    if (!disableAction && defaultFont && setDefaults) {
       setResumeData((prev) => ({
         ...prev,
         template: children,
         templateName: name,
       }));
-      setFont(defaultFont);
+      setDefaults({ fontType: defaultFont, colorTheme: defaultColors });
     }
   };
   return (

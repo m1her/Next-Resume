@@ -1,6 +1,6 @@
 export const colors = [
   { color: "#000000", ring: "ring-black" },
-  { color: "#94a3b8", ring: "ring-slate-400" },
+  { color: "#374151", ring: "ring-gray-700" },
   { color: "#4338ca", ring: "ring-indigo-700" },
   { color: "#1f4e79", ring: "ring-[#1f4e79]" },
   { color: "#d946ef", ring: "ring-fuchsia-600" },

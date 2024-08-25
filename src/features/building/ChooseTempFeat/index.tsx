@@ -11,32 +11,50 @@ import React, { useState } from "react";
 
 export const ChooseTempFeat = () => {
   const { resumeData, setResumeData } = useResumeContext();
-  const [font, setFont] = useState<string>(resumeData.fontType);
+  const [defaults, setDefaults] = useState({
+    fontType: "",
+    colorTheme: {
+      color: "",
+      ring: "",
+    },
+  });
+  const handleBack = () => {
+    setResumeData({
+      template: <></>,
+      templateName: "",
+      colorTheme: { color: "", ring: "" },
+      fontType: "",
+    });
+    router.back();
+  };
   const router = useRouter();
   const confirmTemplate = () => {
-    setResumeData((prev) => ({
-      ...prev,
-      fontType: font,
-    }));
-    router.push("/build-resume/customize-template");
+    if (resumeData.templateName != "") {
+      setResumeData((prev) => ({
+        ...prev,
+        ...defaults,
+      }));
+      router.push("/build-resume/customize-template");
+    }
   };
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">
       <div className="md:text-4xl text-3xl text-center font-bold">
         Choose from our resume templates
       </div>
-      <div className="md:text-2xl text-xl text-center opacity-50">
+      <div className="md:text-2xl text-lg text-center opacity-50">
         Choose your preferred template to proceed to the next step and customize
         it
       </div>
       <div className="w-full h-[1px] bg-textColor/60"></div>
 
-      <div className="w-full mt-8 flex justify-center gap-x-8 select-none">
+      <div className="w-full mt-8 flex md:flex-row flex-col items-center justify-center gap-8 select-none">
         <SmallPreview
           isSelected={resumeData.templateName == "classic"}
           name={"classic"}
           defaultFont={"font-notoserifgeorgian"}
-          setFont={setFont}
+          defaultColors={{ color: "#1f4e79", ring: "ring-[#1f4e79]" }}
+          setDefaults={setDefaults}
         >
           <ClassicTemplate />
         </SmallPreview>
@@ -44,7 +62,8 @@ export const ChooseTempFeat = () => {
           isSelected={resumeData.templateName == "twoCol"}
           name={"twoCol"}
           defaultFont={"font-roboto"}
-          setFont={setFont}
+          defaultColors={{ color: "#374151", ring: "ring-gray-700" }}
+          setDefaults={setDefaults}
         >
           <TwoColumnsTemplate />
         </SmallPreview>
@@ -52,19 +71,20 @@ export const ChooseTempFeat = () => {
       <div className="w-full h-32"></div>
 
       <div className="fixed bottom-0 left-0 md:p-12 p-8 bg-white flex justify-end items-center gap-x-8 w-full shadow-[0_0_7px_1px_rgba(0,0,0,0.2)]">
-        <Link
-          href="/"
-          className="text-primaryColor flex items-center gap-x-1 text-lg hover:border-b border-primaryColor"
+        <div
+          onClick={handleBack}
+          className="text-primaryColor flex items-center gap-x-1 md:text-lg text-base hover:border-b border-primaryColor cursor-pointer"
         >
           <FontAwesomeIcon icon={faChevronLeft} className="w-3 h-3" />
           Back
-        </Link>
-        <div
-          className="px-6 py-2 font-semibold text-lg text-white bg-secondaryColor rounded-full hover:bg-amber-500 transition-colors duration-300 cursor-pointer"
+        </div>
+        <button
+          className="px-6 py-2 font-semibold md:text-lg text-base text-white bg-secondaryColor rounded-full hover:bg-amber-500 disabled:bg-gray-500 transition-colors duration-300 cursor-pointer"
           onClick={confirmTemplate}
+          disabled={resumeData.templateName == ""}
         >
           Choose Template
-        </div>
+        </button>
       </div>
     </div>
   );

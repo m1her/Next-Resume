@@ -4,11 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-export const ClassicTemplate = ({
-  color = "text-[#1f4e79]",
-}: {
-  color?: string;
-}) => {
+export const ClassicTemplate = () => {
   const path = usePathname();
   const { resumeData } = useResumeContext();
 
@@ -21,7 +17,17 @@ export const ClassicTemplate = ({
       } text-black bg-white`}
     >
       <div id="header" className="text-center">
-        <div className={`${color} font-bold text-4xl`}>Your Name</div>
+        <div
+          className="font-bold text-4xl"
+          style={{
+            color:
+              resumeData.colorTheme.color == ""
+                ? "#1f4e79"
+                : resumeData.colorTheme.color,
+          }}
+        >
+          Your Name
+        </div>
         <div className="text-black/60 font-semibold text-xl mt-2">
           Job Title
         </div>
