@@ -5,7 +5,6 @@ import { ClassicTemplate } from "@/features/ResumeTemplates/ClassicTemplate";
 import { TwoColumnsTemplate } from "@/features/ResumeTemplates/TwoColumnsTemplate";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -34,6 +33,14 @@ export const ChooseTempFeat = () => {
         ...prev,
         ...defaults,
       }));
+      localStorage.setItem(
+        "NextResumeData",
+        JSON.stringify({
+          ...resumeData,
+          ...defaults,
+          template: resumeData.templateName,
+        })
+      );
       router.push("/build-resume/customize-template");
     }
   };

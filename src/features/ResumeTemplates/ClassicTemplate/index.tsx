@@ -14,30 +14,24 @@ export const ClassicTemplate = () => {
         path.split("/")[2] != "choose-template"
           ? resumeData.fontType
           : "font-notoserifgeorgian"
-      } text-black bg-white`}
+      } bg-white`}
+      style={{
+        color:
+          resumeData.colorTheme.color == ""
+            ? "#1f4e79"
+            : resumeData.colorTheme.color,
+      }}
     >
       <div id="header" className="text-center">
-        <div
-          className="font-bold text-4xl"
-          style={{
-            color:
-              resumeData.colorTheme.color == ""
-                ? "#1f4e79"
-                : resumeData.colorTheme.color,
-          }}
-        >
-          Your Name
-        </div>
-        <div className="text-black/60 font-semibold text-xl mt-2">
-          Job Title
-        </div>
+        <div className="font-bold text-4xl">Your Name</div>
+        <div className=" opacity-60 font-semibold text-xl mt-2">Job Title</div>
         <div className="mt-4 text-black text-base">
           +20 000 000 0000 | my-email@example.com | City, Country
         </div>
       </div>
 
       <div id="summary" className="mt-12">
-        <div className="text-black font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 border-black">
           Summary
         </div>
         <div className="mt-2 text-black text-justify">
@@ -50,7 +44,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="skills" className="mt-8">
-        <div className="text-black font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 border-black">
           Skills
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
@@ -69,7 +63,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="experience" className="mt-12">
-        <div className="text-black font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 border-black">
           Experience
         </div>
         <div className="mt-4">
@@ -103,8 +97,29 @@ export const ClassicTemplate = () => {
         </div>
       </div>
 
+      <div id="education" className="mt-12">
+        <div className="font-semibold text-lg border-b-2 border-black">
+          Educations
+        </div>
+        <div className="flex flex-col">
+          <div className="flex justify-between items-center mt-4">
+            <div className="text-lg font-medium">Education University</div>
+            <div className="text-black">city, country</div>
+          </div>
+          <div className="flex justify-between items-center ">
+            <div className="text-black font-medium">Education Degree</div>
+            <div className="text-black/70 text-sm">from date - to date</div>
+          </div>
+          <ul className="list-disc list-inside mt-1 text-black">
+            <li>Qwerty zxcvb asd fghj klm nopq rty uio p;lk jhg fds a</li>
+            <li>Vbnm asdf ghjk lkjh p;io yu trvw xz abc def gh ijk</li>
+            <li>Lkjh qwer asd fghj k;l zxcv bnma sdfgh jkl mnop qwer</li>
+          </ul>
+        </div>
+      </div>
+
       <div id="projects" className="mt-12">
-        <div className="text-black font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 border-black">
           Projects
         </div>
         <div className="mt-4">
@@ -134,7 +149,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="languages" className="mt-8">
-        <div className="text-black font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 border-black">
           Languages
         </div>
         <div className="mt-4 text-black grid grid-cols-2 gap-x-8">

@@ -5,9 +5,13 @@ import { fontsData } from "@/features/building/CustomizeTempFeat/fontsData";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { colors } from "./colorsData";
 import { useRouter } from "next/navigation";
+import {
+  TemplatesData,
+  templatesData,
+} from "@/features/ResumeTemplates/templatesData";
 
 export const CustomizeTempFeat = () => {
   const { resumeData, setResumeData } = useResumeContext();
@@ -21,6 +25,18 @@ export const CustomizeTempFeat = () => {
     });
     router.back();
   };
+
+  useEffect(() => {
+    if (resumeData.templateName == "") {
+      const data = JSON.parse(localStorage.getItem("NextResumeData") || "");
+      const { template } = data;
+      setResumeData({
+        ...data,
+        template: templatesData[template as keyof TemplatesData],
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">

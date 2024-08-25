@@ -32,7 +32,15 @@ export const TwoColumnsTemplate = () => {
       </div>
 
       <div className="grid grid-cols-5 w-full">
-        <div className="col-span-2 w-full h-full bg-gray-100 px-16 py-8 flex flex-col gap-y-8">
+        <div
+          className="col-span-2 w-full h-full !bg-opacity-5 text-black px-16 py-8 flex flex-col gap-y-8"
+          style={{
+            backgroundColor:
+              resumeData.colorTheme.color == ""
+                ? "#37415110"
+                : resumeData.colorTheme.color + "10",
+          }}
+        >
           <div
             id="contacts2"
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
@@ -118,7 +126,7 @@ export const TwoColumnsTemplate = () => {
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
           >
             <div className="text-xl font-medium">PROFILE</div>
-            <div>
+            <div className="text-black">
               Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh
               ijkl mnopqr stuvw xyzab cdefg hijkl mnopq rstuvw xyza bcd efg hij
               klmno pqrs tuvwx yzabc defgh ijkl mnop qrst uvwx yzab cdefg hijkl
@@ -132,7 +140,7 @@ export const TwoColumnsTemplate = () => {
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
           >
             <div className="text-xl font-medium">EXPERIENCE</div>
-            <div className="">
+            <div className="text-black">
               <div className="flex justify-between">
                 <div className="text-xl font-medium">Experience Role</div>
                 <div className="text-black/70 text-sm">Location - Type</div>
@@ -165,7 +173,7 @@ export const TwoColumnsTemplate = () => {
 
           <div id="projects2">
             <div className="text-xl font-medium">PROJECTS</div>
-            <div className="mt-4">
+            <div className="mt-4 text-black">
               <div className="flex justify-between">
                 <div className="text-xl font-medium">Project Title</div>
                 <div className="text-black/70 text-sm">Complete Date</div>
