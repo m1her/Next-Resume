@@ -27,7 +27,6 @@ export const SmallPreview = ({
     if (!disableAction && defaultFont && setDefaults) {
       setResumeData((prev) => ({
         ...prev,
-        template: children,
         templateName: name,
       }));
       setDefaults({ fontType: defaultFont, colorTheme: defaultColors });

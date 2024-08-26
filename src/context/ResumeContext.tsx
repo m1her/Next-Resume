@@ -1,9 +1,17 @@
 "use client";
-import { ClassicTemplate } from "@/features/ResumeTemplates/ClassicTemplate";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import {
+  templatesData,
+  TemplatesDataTypes,
+} from "@/features/ResumeTemplates/templatesData";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface ResumeData {
-  template: ReactNode;
   templateName: "classic" | "twoCol" | "";
   colorTheme: {
     color: string;
@@ -18,7 +26,6 @@ interface ResumeContextType {
 }
 
 const defaultResumeData: ResumeData = {
-  template: <></>,
   templateName: "",
   colorTheme: { color: "", ring: "" },
   fontType: "",
@@ -30,6 +37,21 @@ export const ResumeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [resumeData, setResumeData] = useState<ResumeData>(defaultResumeData);
+
+  useEffect(() => {
+    if (
+      resumeData.templateName == "" &&
+      localStorage.getItem("NextResumeData")
+    ) {
+      const data = JSON.parse(localStorage.getItem("NextResumeData") || "");
+      const { template } = data;
+      setResumeData({
+        ...data,
+        template: templatesData[template as keyof TemplatesDataTypes],
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ResumeContext.Provider value={{ resumeData, setResumeData }}>

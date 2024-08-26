@@ -6,9 +6,10 @@ import { TwoColumnsTemplate } from "@/features/ResumeTemplates/TwoColumnsTemplat
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const ChooseTempFeat = () => {
+  const router = useRouter();
   const { resumeData, setResumeData } = useResumeContext();
   const [defaults, setDefaults] = useState({
     fontType: "",
@@ -17,16 +18,15 @@ export const ChooseTempFeat = () => {
       ring: "",
     },
   });
+
   const handleBack = () => {
     setResumeData({
-      template: <></>,
       templateName: "",
       colorTheme: { color: "", ring: "" },
       fontType: "",
     });
     router.back();
   };
-  const router = useRouter();
   const confirmTemplate = () => {
     if (resumeData.templateName != "") {
       setResumeData((prev) => ({
@@ -38,12 +38,19 @@ export const ChooseTempFeat = () => {
         JSON.stringify({
           ...resumeData,
           ...defaults,
-          template: resumeData.templateName,
         })
       );
       router.push("/build-resume/customize-template");
     }
   };
+
+  //to handle browser back click
+  useEffect(() => {
+    setDefaults({
+      fontType: resumeData.fontType,
+      colorTheme: resumeData.colorTheme,
+    });
+  }, []);
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">
       <div className="md:text-4xl text-3xl text-center font-bold">

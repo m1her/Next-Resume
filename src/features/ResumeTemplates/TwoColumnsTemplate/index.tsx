@@ -14,7 +14,7 @@ export const TwoColumnsTemplate = () => {
   const { resumeData } = useResumeContext();
   return (
     <div
-      className={`w-full max-w-[1000px] mx-auto py-12 ${
+      className={`w-full max-w-[1000px] mx-auto py-12 h-full ${
         path.split("/")[2] != "choose-template"
           ? resumeData.fontType
           : "font-roboto"

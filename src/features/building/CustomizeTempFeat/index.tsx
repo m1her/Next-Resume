@@ -4,21 +4,20 @@ import { useResumeContext } from "@/context/ResumeContext";
 import { fontsData } from "@/features/building/CustomizeTempFeat/fontsData";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import { colors } from "./colorsData";
 import { useRouter } from "next/navigation";
 import {
-  TemplatesData,
+  TemplatesDataTypes,
   templatesData,
 } from "@/features/ResumeTemplates/templatesData";
 
 export const CustomizeTempFeat = () => {
   const { resumeData, setResumeData } = useResumeContext();
   const router = useRouter();
+
   const handleBack = () => {
     setResumeData({
-      template: <></>,
       templateName: "",
       colorTheme: { color: "", ring: "" },
       fontType: "",
@@ -26,17 +25,10 @@ export const CustomizeTempFeat = () => {
     router.back();
   };
 
-  useEffect(() => {
-    if (resumeData.templateName == "") {
-      const data = JSON.parse(localStorage.getItem("NextResumeData") || "");
-      const { template } = data;
-      setResumeData({
-        ...data,
-        template: templatesData[template as keyof TemplatesData],
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const confCustoms = () => {
+    localStorage.setItem("NextResumeData", JSON.stringify(resumeData));
+    router.push("/build-resume/fill-data/name-and-contacts");
+  };
 
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">
@@ -87,7 +79,7 @@ export const CustomizeTempFeat = () => {
           </div>
         </div>
         <SmallPreview isSelected={false} disableAction={true} name={"classic"}>
-          {resumeData.template}
+          {templatesData[resumeData.templateName as keyof TemplatesDataTypes]}
         </SmallPreview>
       </div>
       <div className="w-full h-32"></div>
@@ -99,12 +91,12 @@ export const CustomizeTempFeat = () => {
           <FontAwesomeIcon icon={faChevronLeft} className="w-3 h-3" />
           Back
         </div>
-        <Link
-          href="/build-resume/customize-template"
-          className="px-6 py-2 font-semibold md:text-lg text-base text-white bg-secondaryColor rounded-full hover:bg-amber-500 transition-colors duration-300"
+        <div
+          onClick={confCustoms}
+          className="px-6 py-2 font-semibold md:text-lg text-base text-white bg-secondaryColor rounded-full hover:bg-amber-500 transition-colors duration-300 cursor-pointer"
         >
           Start Building Resume
-        </Link>
+        </div>
       </div>
     </div>
   );
