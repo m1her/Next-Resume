@@ -64,11 +64,13 @@ export const ClassicTemplate = () => {
           Summary
         </div>
         <div className="mt-2 text-black text-justify">
-          Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh ijkl
+          {isDefault || !resumeData.website
+            ? `Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh ijkl
           mnopqr stuvw xyzab cdefg hijkl mnopq rstuvw xyza bcd efg hij klmno
           pqrs tuvwx yzabc defgh ijkl mnop qrst uvwx yzab cdefg hijkl mnopq rst
           uvwx yzabc defghi jklmnopq rs tuvwx yzab cdefgh ijklmn opqrs tuvwx
-          yzabcdefg hijkl mnopqrst uvwxy zabcde.
+          yzabcdefg hijkl mnopqrst uvwxy zabcde.`
+            : resumeData.summary}
         </div>
       </div>
 

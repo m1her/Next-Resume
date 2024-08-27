@@ -7,6 +7,7 @@ import {
   templatesData,
   TemplatesDataTypes,
 } from "@/features/ResumeTemplates/templatesData";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -26,6 +27,7 @@ export const PersonalDetails = () => {
     formState: { errors },
     reset,
   } = useForm<Inputs>();
+  const router = useRouter();
   const { resumeData, setResumeData } = useResumeContext();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -37,6 +39,7 @@ export const PersonalDetails = () => {
         ...data,
       })
     );
+    router.push("/build-resume/fill-data/summary");
   };
 
   useEffect(() => {
@@ -49,7 +52,7 @@ export const PersonalDetails = () => {
       number,
       website,
     });
-  }, [resumeData]);
+  }, [reset, resumeData]);
 
   return (
     <div className="w-full h-full grid lg:grid-cols-3 grid-cols-1 place-items-center lg:gap-8 gap-6">
@@ -151,6 +154,7 @@ export const PersonalDetails = () => {
         btnType="submit"
         text={"Continue to summary"}
         form="personal-info"
+        handleBack={() => router.back}
       />
     </div>
   );
