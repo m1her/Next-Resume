@@ -37,8 +37,8 @@ export const linksData = [
   },
   {
     id: "7",
-    link: "lagnuages",
-    text: "Lagnuages",
+    link: "languages",
+    text: "Languages",
     number: 7,
   },
 ];

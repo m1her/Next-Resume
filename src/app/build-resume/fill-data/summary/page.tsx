@@ -1,4 +1,3 @@
-import { PersonalDetails } from "@/features/building/PersonalDetails";
 import { SummaryFeat } from "@/features/building/SummaryFeat";
 import React from "react";
 
