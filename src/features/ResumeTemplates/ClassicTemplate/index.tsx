@@ -6,6 +6,7 @@ import React from "react";
 
 export const ClassicTemplate = () => {
   const path = usePathname();
+  const isDefault = path.split("/")[2] == "choose-template";
   const { resumeData } = useResumeContext();
 
   return (
@@ -23,10 +24,38 @@ export const ClassicTemplate = () => {
       }}
     >
       <div id="header" className="text-center">
-        <div className="font-bold text-4xl">Your Name</div>
-        <div className=" opacity-60 font-semibold text-xl mt-2">Job Title</div>
-        <div className="mt-4 text-black text-base">
-          +20 000 000 0000 | my-email@example.com | City, Country
+        <div className="font-bold text-4xl">
+          {isDefault || !resumeData.name ? "Your Name" : resumeData.name}
+        </div>
+        <div className=" opacity-60 font-semibold text-xl mt-2">
+          {isDefault || !resumeData.job ? "Job Title" : resumeData.job}
+        </div>
+        <div className="w-full flex justify-center">
+          <div className="mt-4 text-black text-base flex justify-center gap-x-2 w-[500px] flex-wrap">
+            <div>
+              {isDefault || !resumeData.number
+                ? "+20 000 000 0000"
+                : resumeData.number}
+            </div>
+            |
+            <div>
+              {isDefault || !resumeData.email
+                ? "my-email@example.com"
+                : resumeData.email}
+            </div>
+            |
+            <div>
+              {isDefault || !resumeData.location
+                ? "City, Country"
+                : resumeData.location}
+            </div>
+            |
+            <div>
+              {isDefault || !resumeData.website
+                ? "https://www.linkedin.com/in/mns21"
+                : resumeData.website}
+            </div>
+          </div>
         </div>
       </div>
 

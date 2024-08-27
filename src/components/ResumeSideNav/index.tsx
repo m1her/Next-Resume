@@ -23,9 +23,11 @@ export const ResumeSideNav = () => {
 
   const selectPrev = debounce(() => {
     setSelectedId((prev) => (prev > 1 ? prev - 1 : prev));
+    router.push(`/build-resume/fill-data/${linksData[selectedId - 2].link}`);
   }, 200);
 
   const selectAfter = debounce(() => {
+    router.push(`/build-resume/fill-data/${linksData[selectedId].link}`);
     setSelectedId((prev) => (prev < 7 ? prev + 1 : prev));
   }, 200);
 
@@ -34,9 +36,10 @@ export const ResumeSideNav = () => {
       (item) => item.link == pathname.split("/")[3]
     );
     setSelectedId(cur + 1);
-  }, []);
+  }, [pathname]);
+
   return (
-    <div className="md:px-12 px-8 md:py-4 py-3 md:w-[300px] w-full text-white md:min-h-screen md:text-xl text-base select-none font-urbanist font-semibold bg-textColor h-full shadow-[0_0_7px_1px_rgba(0,0,0,0.2)]">
+    <div className="md:px-12 px-8 md:py-4 py-3 md:w-[300px] w-full text-white md:text-xl text-base select-none font-urbanist font-semibold bg-textColor shadow-[0_0_7px_1px_rgba(0,0,0,0.2)]">
       <Link href="/" className="text-primaryColor">
         Next Resume
       </Link>

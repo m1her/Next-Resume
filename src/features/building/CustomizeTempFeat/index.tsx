@@ -1,6 +1,6 @@
 "use client";
 import { SmallPreview } from "@/components/SmallPreview";
-import { useResumeContext } from "@/context/ResumeContext";
+import { defaultResumeData, useResumeContext } from "@/context/ResumeContext";
 import { fontsData } from "@/features/building/CustomizeTempFeat/fontsData";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,17 +11,14 @@ import {
   TemplatesDataTypes,
   templatesData,
 } from "@/features/ResumeTemplates/templatesData";
+import { BuildingResumeFooter } from "@/components/BuildingResumeFooter";
 
 export const CustomizeTempFeat = () => {
   const { resumeData, setResumeData } = useResumeContext();
   const router = useRouter();
 
   const handleBack = () => {
-    setResumeData({
-      templateName: "",
-      colorTheme: { color: "", ring: "" },
-      fontType: "",
-    });
+    setResumeData(defaultResumeData);
     router.back();
   };
 
@@ -82,7 +79,12 @@ export const CustomizeTempFeat = () => {
           {templatesData[resumeData.templateName as keyof TemplatesDataTypes]}
         </SmallPreview>
       </div>
-      <div className="w-full h-32"></div>
+      <BuildingResumeFooter
+        handleBack={handleBack}
+        confCustoms={confCustoms}
+        text={"Start Building Resume"}
+      />
+      {/* <div className="w-full h-32"></div>
       <div className="fixed bottom-0 left-0 md:p-12 p-8 bg-white flex items-center gap-x-8 justify-end w-full shadow-[0_0_7px_1px_rgba(0,0,0,0.2)]">
         <div
           onClick={handleBack}
@@ -97,7 +99,7 @@ export const CustomizeTempFeat = () => {
         >
           Start Building Resume
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

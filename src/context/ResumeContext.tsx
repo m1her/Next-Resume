@@ -18,6 +18,12 @@ interface ResumeData {
     ring: string;
   };
   fontType: string;
+  email: string;
+  job: string;
+  location: string;
+  name: string;
+  number: string;
+  website: string;
 }
 
 interface ResumeContextType {
@@ -25,10 +31,16 @@ interface ResumeContextType {
   setResumeData: React.Dispatch<React.SetStateAction<ResumeData>>;
 }
 
-const defaultResumeData: ResumeData = {
+export const defaultResumeData: ResumeData = {
   templateName: "",
   colorTheme: { color: "", ring: "" },
   fontType: "",
+  email: "",
+  job: "",
+  location: "",
+  name: "",
+  number: "",
+  website: "",
 };
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);

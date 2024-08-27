@@ -1,6 +1,7 @@
 "use client";
+import { BuildingResumeFooter } from "@/components/BuildingResumeFooter";
 import { SmallPreview } from "@/components/SmallPreview";
-import { useResumeContext } from "@/context/ResumeContext";
+import { defaultResumeData, useResumeContext } from "@/context/ResumeContext";
 import { ClassicTemplate } from "@/features/ResumeTemplates/ClassicTemplate";
 import { TwoColumnsTemplate } from "@/features/ResumeTemplates/TwoColumnsTemplate";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
@@ -20,11 +21,7 @@ export const ChooseTempFeat = () => {
   });
 
   const handleBack = () => {
-    setResumeData({
-      templateName: "",
-      colorTheme: { color: "", ring: "" },
-      fontType: "",
-    });
+    setResumeData(defaultResumeData);
     router.back();
   };
   const confirmTemplate = () => {
@@ -50,7 +47,8 @@ export const ChooseTempFeat = () => {
       fontType: resumeData.fontType,
       colorTheme: resumeData.colorTheme,
     });
-  }, []);
+  }, [resumeData.colorTheme, resumeData.fontType]);
+
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">
       <div className="md:text-4xl text-3xl text-center font-bold">
@@ -82,8 +80,13 @@ export const ChooseTempFeat = () => {
           <TwoColumnsTemplate />
         </SmallPreview>
       </div>
-      <div className="w-full h-32"></div>
-
+      <BuildingResumeFooter
+        handleBack={handleBack}
+        confCustoms={confirmTemplate}
+        text={"Choose Template"}
+        disabled={resumeData.templateName == ""}
+      />
+      {/* <div className="w-full h-32"></div>
       <div className="fixed bottom-0 left-0 md:p-12 p-8 bg-white flex justify-end items-center gap-x-8 w-full shadow-[0_0_7px_1px_rgba(0,0,0,0.2)]">
         <div
           onClick={handleBack}
@@ -99,7 +102,7 @@ export const ChooseTempFeat = () => {
         >
           Choose Template
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
