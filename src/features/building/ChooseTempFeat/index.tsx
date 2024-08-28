@@ -1,16 +1,16 @@
 "use client";
 import { BuildingResumeFooter } from "@/components/BuildingResumeFooter";
+import Modal from "@/components/Modal";
 import { SmallPreview } from "@/components/SmallPreview";
 import { defaultResumeData, useResumeContext } from "@/context/ResumeContext";
 import { ClassicTemplate } from "@/features/ResumeTemplates/ClassicTemplate";
 import { TwoColumnsTemplate } from "@/features/ResumeTemplates/TwoColumnsTemplate";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export const ChooseTempFeat = () => {
   const router = useRouter();
+  const [isContinued, setIsContinued] = useState(false);
   const { resumeData, setResumeData } = useResumeContext();
   const [defaults, setDefaults] = useState({
     fontType: "",
@@ -49,6 +49,23 @@ export const ChooseTempFeat = () => {
     });
   }, [resumeData.colorTheme, resumeData.fontType]);
 
+  useEffect(() => {
+    const data = localStorage.getItem("NextResumeData");
+    if (data) {
+      setIsContinued(true);
+    }
+  }, []);
+
+  const handleContinue = () => {
+    router.push("/build-resume/fill-data/name-and-contacts");
+    setIsContinued(false);
+  };
+  const deleteContinue = () => {
+    setIsContinued(false);
+    localStorage.removeItem("NextResumeData");
+    setResumeData(defaultResumeData);
+  };
+
   return (
     <div className="md:pt-28 pt-20 md:p-12 p-8 flex flex-col gap-y-2 items-center font-urbanist text-textColor">
       <div className="md:text-4xl text-3xl text-center font-bold">
@@ -86,6 +103,30 @@ export const ChooseTempFeat = () => {
         text={"Choose Template"}
         disabled={resumeData.templateName == ""}
       />
+
+      {isContinued && (
+        <Modal onDismiss={() => setIsContinued(false)}>
+          <div className="flex flex-col gap-y-4 items-center">
+            <div className="text-2xl font-semibold text-textColor">
+              Continue with the last resume?
+            </div>
+            <div className="flex items-center gap-x-4">
+              <button
+                className="text-lg font-semibold text-white bg-errorColor rounded-full px-6 py-2 hover:bg-errorColor/90 transition-all duration-300"
+                onClick={deleteContinue}
+              >
+                Delete
+              </button>
+              <button
+                className="text-lg font-semibold text-white bg-primaryColor rounded-full px-8 py-2 hover:bg-primaryColor/90 transition-all duration-300"
+                onClick={handleContinue}
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
       {/* <div className="w-full h-32"></div>
       <div className="fixed bottom-0 left-0 md:p-12 p-8 bg-white flex justify-end items-center gap-x-8 w-full shadow-[0_0_7px_1px_rgba(0,0,0,0.2)]">
         <div

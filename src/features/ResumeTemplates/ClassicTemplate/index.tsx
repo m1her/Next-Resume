@@ -64,7 +64,7 @@ export const ClassicTemplate = () => {
           Summary
         </div>
         <div className="mt-2 text-black text-justify">
-          {isDefault || !resumeData.website
+          {isDefault || !resumeData.summary
             ? `Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh ijkl
           mnopqr stuvw xyzab cdefg hijkl mnopq rstuvw xyza bcd efg hij klmno
           pqrs tuvwx yzabc defgh ijkl mnop qrst uvwx yzab cdefg hijkl mnopq rst
