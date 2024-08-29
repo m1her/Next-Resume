@@ -8,13 +8,14 @@ import {
 } from "@/features/ResumeTemplates/templatesData";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { ExperienceItem } from "./ExperienceItem";
 
 export const ExperienceFeat = () => {
   const router = useRouter();
   const { resumeData, setResumeData } = useResumeContext();
 
   return (
-    <div className="w-full h-full grid lg:grid-cols-3 grid-cols-1 place-items-center lg:gap-8 gap-6">
+    <div className="w-full h-full grid lg:grid-cols-3 grid-cols-1 place-items-center lg:gap-8 gap-6 md:pt-20">
       <div className="flex flex-col gap-4 items-center w-full lg:col-span-2">
         <div className="md:text-3xl text-xl font-bold text-textColor">
           Please Add Your Esperience
@@ -22,15 +23,16 @@ export const ExperienceFeat = () => {
         <div className="md:text-lg text-base font-semibold text-textColor/70 -mt-4">
           Make sure to add them in order
         </div>
+        <div>
+          <ExperienceItem />
+        </div>
       </div>
       <SmallPreview isSelected={false} disableAction={true} name={"classic"}>
         {templatesData[resumeData.templateName as keyof TemplatesDataTypes]}
       </SmallPreview>
 
       <BuildingResumeFooter
-        btnType="submit"
-        text={"Continue to summary"}
-        form="personal-info"
+        text={"Continue to education"}
         handleBack={() => router.back}
       />
     </div>
