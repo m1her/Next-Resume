@@ -25,6 +25,7 @@ interface ResumeData {
   number: string;
   website: string;
   summary: string;
+  skills: string[];
 }
 
 interface ResumeContextType {
@@ -43,6 +44,7 @@ export const defaultResumeData: ResumeData = {
   number: "",
   website: "",
   summary: "",
+  skills: [],
 };
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);

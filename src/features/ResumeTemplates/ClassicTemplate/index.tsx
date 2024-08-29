@@ -79,7 +79,7 @@ export const ClassicTemplate = () => {
           Skills
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
-          {["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"].map(
+          {resumeData.skills.map(
             (skill, idx) => (
               <div className="flex items-center" key={idx}>
                 <FontAwesomeIcon
