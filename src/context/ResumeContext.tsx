@@ -1,4 +1,5 @@
 "use client";
+import { ExperienceCard } from "@/features/building/ExperienceFeat/ExpDataTypes";
 import {
   templatesData,
   TemplatesDataTypes,
@@ -26,6 +27,7 @@ interface ResumeData {
   website: string;
   summary: string;
   skills: string[];
+  experience: ExperienceCard[];
 }
 
 interface ResumeContextType {
@@ -45,6 +47,7 @@ export const defaultResumeData: ResumeData = {
   website: "",
   summary: "",
   skills: [],
+  experience: [],
 };
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);

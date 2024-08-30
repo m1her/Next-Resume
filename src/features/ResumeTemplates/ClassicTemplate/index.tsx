@@ -3,6 +3,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { ClassicTempExp } from "./ClassicTempExp";
 
 export const ClassicTemplate = () => {
   const path = usePathname();
@@ -79,17 +80,27 @@ export const ClassicTemplate = () => {
           Skills
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
-          {resumeData.skills.map(
-            (skill, idx) => (
-              <div className="flex items-center" key={idx}>
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className="text-green-500 w-4 h-4 mr-2"
-                />
-                {skill}
-              </div>
-            )
-          )}
+          {isDefault || !resumeData.skills
+            ? ["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"].map(
+                (skill, idx) => (
+                  <div className="flex items-center" key={idx}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="text-green-500 w-4 h-4 mr-2"
+                    />
+                    {skill}
+                  </div>
+                )
+              )
+            : resumeData.skills.map((skill, idx) => (
+                <div className="flex items-center" key={idx}>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    className="text-green-500 w-4 h-4 mr-2"
+                  />
+                  {skill}
+                </div>
+              ))}
         </div>
       </div>
 
@@ -97,35 +108,13 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 border-black">
           Experience
         </div>
-        <div className="mt-4">
-          <div className="flex justify-between">
-            <div className="text-lg font-medium">Company Name</div>
-            <div className="text-black/70">Location - Type</div>
-          </div>
-          <div className="text-black/70 text-sm flex justify-between">
-            <div>Experience Role</div>
-            <div>Start – End</div>
-          </div>
-          <ul className="list-disc list-inside mt-2 text-black">
-            <li>
-              Xyloz qwerty at 73.29%, completed a prime level achievement.
-            </li>
-            <li>
-              Assembled modular frameworks with Zyx.js, enhancing project
-              adaptability.
-            </li>
-            <li>
-              Partnered with the strategy crew to craft intuitive and
-              interactive designs.
-            </li>
-          </ul>
-          <div className="mt-2">
-            <div className="font-medium">Key Tech and Tools:</div>
-            <div className="text-black/70 text-sm">
-              Skill1, Skill2, Skill3, Skill4, Skill5.
-            </div>
-          </div>
-        </div>
+        {isDefault || !resumeData.skills ? (
+          <ClassicTempExp />
+        ) : (
+          resumeData.experience.map((item, idx) => (
+            <ClassicTempExp key={idx} data={item} />
+          ))
+        )}
       </div>
 
       <div id="education" className="mt-12">

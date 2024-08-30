@@ -1,52 +1,39 @@
 import { TextInput } from "@/components/TextInput";
 import React from "react";
-import { ExperienceBullitPoints } from "../../ExpDataTypes";
-import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import { ExperienceBullitPoints, ExperienceCard } from "../../ExpDataTypes";
+import {
+  Control,
+  FieldErrors,
+  SubmitHandler,
+  useFieldArray,
+  UseFormRegister,
+} from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const ExpBullitPointsData = ({
-  setExpBullitPoints,
+  control,
+  errors,
+  register,
 }: {
-  setExpBullitPoints: React.Dispatch<
-    React.SetStateAction<string[] | undefined>
-  >;
+  control: Control<ExperienceCard, any>;
+  errors: FieldErrors<ExperienceCard>;
+  register: UseFormRegister<ExperienceCard>;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    control,
-  } = useForm<ExperienceBullitPoints>({
-    defaultValues: { expBullitPoints: [{ text: "" }] },
-  });
-
   const { fields, append, remove } = useFieldArray({
     name: "expBullitPoints",
     control,
   });
-
-  const onSubmit: SubmitHandler<ExperienceBullitPoints> = (data) => {
-    const points = data.expBullitPoints.map((item) => item.text);
-    setExpBullitPoints(points);
-    reset({ expBullitPoints: [{ text: "" }] });
-  };
-
   return (
-    <form
-      id="experience-form"
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-4"
-    >
+    <div className="flex flex-col gap-4">
       {fields.map((field, index) => (
         <div className="flex justify-between items-end gap-4" key={field.id}>
           <TextInput
             id={`bullit-point-${index}.text`}
             label="Bullit Point"
-            name={`bullitPoints.${index}.text` as const}
+            name={`expBullitPoints.${index}.text` as const}
             placeholder="Any note about the experience"
-            error={!!errors.expBullitPoints}
+            error={!!errors.expBullitPoints?.[index]?.text}
             errorMsg={errors.expBullitPoints?.[index]?.text?.message}
             register={register}
             registerProps={{
@@ -71,6 +58,6 @@ export const ExpBullitPointsData = ({
           <FontAwesomeIcon icon={faPlus} className="w-3 h-3" />
         </div>
       </div>
-    </form>
+    </div>
   );
 };

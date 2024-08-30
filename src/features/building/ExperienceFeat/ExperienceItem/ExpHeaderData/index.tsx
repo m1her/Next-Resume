@@ -1,39 +1,17 @@
 import { TextInput } from "@/components/TextInput";
 import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { ExperienceHeaderInputs } from "../../ExpDataTypes";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { ExperienceCard } from "../../ExpDataTypes";
 
 export const ExpHeaderData = ({
-  setHeadData,
+  errors,
+  register,
 }: {
-  setHeadData: React.Dispatch<
-    React.SetStateAction<ExperienceHeaderInputs[] | []>
-  >;
+  errors: FieldErrors<ExperienceCard>;
+  register: UseFormRegister<ExperienceCard>;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<ExperienceHeaderInputs>();
-
-  const onSubmit: SubmitHandler<ExperienceHeaderInputs> = (data) => {
-    setHeadData((prev) => [...prev, data]);
-    reset({
-      companyLocation: "",
-      companyName: "",
-      companyPositionRole: "",
-      endDate: "",
-      startDate: "",
-    });
-  };
-
   return (
-    <form
-      id="experience-form"
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid lg:grid-cols-2 grid-cols-1 w-full gap-4"
-    >
+    <div className="grid lg:grid-cols-2 grid-cols-1 w-full gap-4">
       <TextInput
         id="company-name"
         label="Company Name"
@@ -96,6 +74,6 @@ export const ExpHeaderData = ({
           }}
         />
       </div>
-    </form>
+    </div>
   );
 };
