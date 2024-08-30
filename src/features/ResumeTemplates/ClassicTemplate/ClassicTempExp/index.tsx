@@ -26,7 +26,9 @@ export const ClassicTempExp = ({ data }: { data?: ExperienceCard }) => {
       </div>
       <ul className="list-disc list-inside mt-2 text-black">
         {data?.expBullitPoints ? (
-          data?.expBullitPoints.map((item) => <li>{item.text}</li>)
+          data?.expBullitPoints.map((item, idx) => (
+            <li key={idx}>{item.text}</li>
+          ))
         ) : (
           <>
             <li>

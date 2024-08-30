@@ -1,39 +1,40 @@
-import { TextInput } from "@/components/TextInput";
 import React from "react";
-import { ExperienceCard } from "../../ExpDataTypes";
 import {
   Control,
   FieldErrors,
   useFieldArray,
   UseFormRegister,
 } from "react-hook-form";
+import { EducationCard } from "../../EduDataTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { TextInput } from "@/components/TextInput";
 
-export const ExpBullitPointsData = ({
+export const EduBullitPointsData = ({
   control,
   errors,
   register,
 }: {
-  control: Control<ExperienceCard, any>;
-  errors: FieldErrors<ExperienceCard>;
-  register: UseFormRegister<ExperienceCard>;
+  control: Control<EducationCard, any>;
+  errors: FieldErrors<EducationCard>;
+  register: UseFormRegister<EducationCard>;
 }) => {
   const { fields, append, remove } = useFieldArray({
-    name: "expBullitPoints",
+    name: "eduBullitPoints",
     control,
   });
+
   return (
     <div className="flex flex-col gap-4">
       {fields.map((field, index) => (
         <div className="flex justify-between items-end gap-4" key={field.id}>
           <TextInput
-            id={`bullit-point-${index}.text`}
+            id={`edu-bullit-point-${index}.text`}
             label="Bullit Point"
-            name={`expBullitPoints.${index}.text` as const}
+            name={`eduBullitPoints.${index}.text` as const}
             placeholder="Any note about the experience"
-            error={!!errors.expBullitPoints?.[index]?.text}
-            errorMsg={errors.expBullitPoints?.[index]?.text?.message}
+            error={!!errors.eduBullitPoints?.[index]?.text}
+            errorMsg={errors.eduBullitPoints?.[index]?.text?.message}
             register={register}
             registerProps={{
               required: "Bullit Point is Required",

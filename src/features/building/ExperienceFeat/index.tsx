@@ -24,13 +24,13 @@ export const ExperienceFeat = () => {
     setEditIdx(idx);
   };
 
-  const handleDelete = (text: string, startDate: string, endDate: string) => {
+  const handleDelete = (text: string, startDate: string, endDate: string) => {   
     setExpData((prev) =>
       prev.filter(
         (item) =>
-          item.companyName != text &&
-          item.endDate != startDate &&
-          item.startDate != endDate
+          item.companyName != text ||
+          item.endDate != endDate ||
+          item.startDate != startDate
       )
     );
   };
@@ -77,7 +77,7 @@ export const ExperienceFeat = () => {
           ) : (
             expData.map((exp, idx) => (
               <ListCard
-                key={exp.companyName + idx}
+                key={exp.companyName + Math.random()}
                 text={exp.companyName}
                 index={idx}
                 handleEdit={handleEdit}

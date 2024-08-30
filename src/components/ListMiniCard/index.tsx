@@ -4,12 +4,14 @@ import React, { useState } from "react";
 
 export const ListMiniCard = ({
   text,
+  extra,
   handleDelete,
   handleEdit,
 }: {
   text: string;
+  extra?: string;
   handleDelete: (text: string) => void;
-  handleEdit: (text: string) => void;
+  handleEdit: (text: string, extra?: string) => void;
 }) => {
   const [crudOpen, setCrudOpen] = useState(false);
   const [deleteAnimation, setDeleteAnimation] = useState(false);
@@ -45,7 +47,7 @@ export const ListMiniCard = ({
           <FontAwesomeIcon icon={faX} className="w-3 h-3 text-white" />
         </div>
         <div
-          onClick={() => handleEdit(text)}
+          onClick={() => handleEdit(text, extra)}
           className={`absolute w-6 aspect-square rounded-full flex items-center justify-center bg-primaryColor cursor-pointer hover:bg-blue-600 transition-all duration-200
             ${
               crudOpen
@@ -59,8 +61,9 @@ export const ListMiniCard = ({
       </div>
       {crudOpen && (
         <div
-          className="fixed w-full min-h-screen z-20 top-0 left-0"
+          className="fixed inset-0 w-full z-20 top-0 left-0 bg-black"
           onClick={() => setCrudOpen(false)}
+          style={{position: "fixed"}}
         ></div>
       )}
     </div>

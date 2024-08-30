@@ -1,5 +1,8 @@
 "use client";
+import { EducationCard } from "@/features/building/EducationFeat/EduDataTypes";
 import { ExperienceCard } from "@/features/building/ExperienceFeat/ExpDataTypes";
+import { LangDataTypes } from "@/features/building/LanguagesFeat/LangDataTypes";
+import { ProjectCard } from "@/features/building/ProjectsFeat/PrjDataTypes";
 import {
   templatesData,
   TemplatesDataTypes,
@@ -28,6 +31,9 @@ interface ResumeData {
   summary: string;
   skills: string[];
   experience: ExperienceCard[];
+  education: EducationCard[];
+  projects: ProjectCard[];
+  languages: LangDataTypes[];
 }
 
 interface ResumeContextType {
@@ -48,6 +54,9 @@ export const defaultResumeData: ResumeData = {
   summary: "",
   skills: [],
   experience: [],
+  education: [],
+  projects: [],
+  languages: [],
 };
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { ClassicTempExp } from "./ClassicTempExp";
+import { ClassicTempEdu } from "./ClassicTempEdu";
 
 export const ClassicTemplate = () => {
   const path = usePathname();
@@ -108,7 +109,7 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 border-black">
           Experience
         </div>
-        {isDefault || !resumeData.skills ? (
+        {isDefault || !resumeData.experience ? (
           <ClassicTempExp />
         ) : (
           resumeData.experience.map((item, idx) => (
@@ -121,21 +122,13 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 border-black">
           Educations
         </div>
-        <div className="flex flex-col">
-          <div className="flex justify-between items-center mt-4">
-            <div className="text-lg font-medium">Education University</div>
-            <div className="text-black">city, country</div>
-          </div>
-          <div className="flex justify-between items-center ">
-            <div className="text-black font-medium">Education Degree</div>
-            <div className="text-black/70 text-sm">from date - to date</div>
-          </div>
-          <ul className="list-disc list-inside mt-1 text-black">
-            <li>Qwerty zxcvb asd fghj klm nopq rty uio p;lk jhg fds a</li>
-            <li>Vbnm asdf ghjk lkjh p;io yu trvw xz abc def gh ijk</li>
-            <li>Lkjh qwer asd fghj k;l zxcv bnma sdfgh jkl mnop qwer</li>
-          </ul>
-        </div>
+        {isDefault || !resumeData.education ? (
+          <ClassicTempEdu />
+        ) : (
+          resumeData.education.map((item, idx) => (
+            <ClassicTempEdu key={idx} data={item} />
+          ))
+        )}
       </div>
 
       <div id="projects" className="mt-12">
