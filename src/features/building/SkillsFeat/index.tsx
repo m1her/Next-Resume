@@ -36,7 +36,7 @@ export const SkillsFeat = () => {
       setMySkills((prev) => prev.filter((item) => item !== text));
     }, 300);
   };
-  
+
   const handleEdit = (text: string) => {
     setMySkills((prev) => prev.filter((item) => item !== text));
     reset({ skill: text });
