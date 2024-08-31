@@ -58,7 +58,7 @@ export const LanguagesFeat = () => {
       })
     );
 
-    // router.push("/");
+    router.push("/download");
   };
 
   useEffect(() => {

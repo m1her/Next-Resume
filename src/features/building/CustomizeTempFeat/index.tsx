@@ -18,7 +18,6 @@ export const CustomizeTempFeat = () => {
   const router = useRouter();
 
   const handleBack = () => {
-    setResumeData(defaultResumeData);
     router.back();
   };
 

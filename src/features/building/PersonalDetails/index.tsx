@@ -154,7 +154,7 @@ export const PersonalDetails = () => {
         btnType="submit"
         text={"Continue to summary"}
         form="personal-info"
-        handleBack={() => router.back}
+        handleBack={() => router.back()}
       />
     </div>
   );

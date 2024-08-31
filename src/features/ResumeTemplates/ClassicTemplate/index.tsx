@@ -63,7 +63,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="summary" className="mt-12">
-        <div className="font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Summary
         </div>
         <div className="mt-2 text-black text-justify">
@@ -78,7 +78,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="skills" className="mt-8">
-        <div className="font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Skills
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
@@ -107,7 +107,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="experience" className="mt-12">
-        <div className="font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Experience
         </div>
         {isDefault || !resumeData.experience ? (
@@ -120,7 +120,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="education" className="mt-12">
-        <div className="font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Educations
         </div>
         {isDefault || !resumeData.education ? (
@@ -133,7 +133,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="projects" className="mt-12">
-        <div className="font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Projects
         </div>
         <div className="mt-4">
@@ -163,7 +163,7 @@ export const ClassicTemplate = () => {
       </div>
 
       <div id="languages" className="mt-8">
-        <div className="font-semibold text-lg border-b-2 border-black">
+        <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Languages
         </div>
         <div className="mt-4 text-black grid grid-cols-2 gap-x-8">
