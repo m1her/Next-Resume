@@ -1,5 +1,6 @@
 import { useResumeContext } from "@/context/ResumeContext";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../Modal";
 
 export const SmallPreview = ({
   children,
@@ -22,7 +23,7 @@ export const SmallPreview = ({
   setDefaults?: React.Dispatch<React.SetStateAction<any>>;
 }>) => {
   const { setResumeData } = useResumeContext();
-
+  const [previewTemplate, setPreviewTemplate] = useState(false);
   const setSelectedHandler = () => {
     if (!disableAction && defaultFont && setDefaults) {
       setResumeData((prev) => ({
@@ -32,6 +33,7 @@ export const SmallPreview = ({
       setDefaults({ fontType: defaultFont, colorTheme: defaultColors });
     }
   };
+
   return (
     <div
       onClick={setSelectedHandler}
@@ -39,9 +41,25 @@ export const SmallPreview = ({
         disableAction ? "" : "hover:outline cursor-pointer"
       } outline-blue-500  ${isSelected ? "outline" : ""}`}
     >
+      {disableAction && (
+        <div
+          onClick={() => setPreviewTemplate(true)}
+          className="absolute text-lg font-semibold text-white w-full h-full top-0 left-0 z-10 bg-transparent hover:bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center transition-all duration-200 cursor-pointer"
+        >
+          Preview
+        </div>
+      )}
       <div className="scale-[0.27] origin-top-left absolute w-[800px]">
         {children}
       </div>
+      {previewTemplate && (
+        <Modal
+          customStyle="p-0 rounded-0 lg:scale-100 md:scale-75 scale-[0.90] "
+          onDismiss={() => setPreviewTemplate(false)}
+        >
+          {children}
+        </Modal>
+      )}
     </div>
   );
 };

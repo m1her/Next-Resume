@@ -1,26 +1,27 @@
+import React, { forwardRef } from "react";
 import { useResumeContext } from "@/context/ResumeContext";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { ClassicTempExp } from "./ClassicTempExp";
 import { ClassicTempEdu } from "./ClassicTempEdu";
 
 export const ClassicTemplate = () => {
   const path = usePathname();
-  const isDefault = path.split("/")[2] == "choose-template";
+  const isDefault = path.split("/")[2] === "choose-template";
   const { resumeData } = useResumeContext();
 
   return (
     <div
+      id="my-temp"
       className={`w-full max-w-[800px] mx-auto p-8 ${
-        path.split("/")[2] != "choose-template"
+        path.split("/")[2] !== "choose-template"
           ? resumeData.fontType
           : "font-notoserifgeorgian"
       } bg-white`}
       style={{
         color:
-          resumeData.colorTheme.color == ""
+          resumeData.colorTheme.color === ""
             ? "#1f4e79"
             : resumeData.colorTheme.color,
       }}
@@ -29,7 +30,7 @@ export const ClassicTemplate = () => {
         <div className="font-bold text-4xl">
           {isDefault || !resumeData.name ? "Your Name" : resumeData.name}
         </div>
-        <div className=" opacity-60 font-semibold text-xl mt-2">
+        <div className="opacity-60 font-semibold text-xl mt-2">
           {isDefault || !resumeData.job ? "Job Title" : resumeData.job}
         </div>
         <div className="w-full flex justify-center">

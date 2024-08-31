@@ -105,7 +105,10 @@ export const ChooseTempFeat = () => {
       />
 
       {isContinued && (
-        <Modal onDismiss={() => setIsContinued(false)}>
+        <Modal
+          customStyle="absolute bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10/12 md:w-8/12 lg:w-2/5 p-6 rounded"
+          onDismiss={() => setIsContinued(false)}
+        >
           <div className="flex flex-col gap-y-4 items-center">
             <div className="text-2xl font-semibold text-textColor">
               Continue with the last resume?

@@ -90,7 +90,7 @@ export const SkillsFeat = () => {
             </button>
           </div>
         </form>
-        <div className="w-[400px] bg-gray-50 flex items-center gap-2 p-1 rounded border border-gray-300 shadow-inner min-h-11 flex-wrap">
+        <div className="w-[400px] relative bg-gray-50 flex items-center gap-2 p-1 rounded border border-gray-300 shadow-inner min-h-11 flex-wrap">
           {mySkills.map((skill) => (
             <ListMiniCard
               key={skill}

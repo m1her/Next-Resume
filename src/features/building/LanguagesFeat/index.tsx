@@ -9,7 +9,7 @@ import {
   TemplatesDataTypes,
 } from "@/features/ResumeTemplates/templatesData";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LangDataTypes } from "./LangDataTypes";
 
@@ -28,6 +28,7 @@ export const LanguagesFeat = () => {
   const router = useRouter();
   const [myLanguages, setMyLanguages] = useState<LangDataTypes[]>([]);
   const { resumeData, setResumeData } = useResumeContext();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setMyLanguages((prev) => [
       ...prev,
@@ -47,7 +48,7 @@ export const LanguagesFeat = () => {
     reset({ language: language, level: extra });
   };
 
-  const continueToExperience = () => {
+  const saveAndDownload = async () => {
     setResumeData((prev) => ({ ...prev, languages: myLanguages }));
     localStorage.setItem(
       "NextResumeData",
@@ -56,7 +57,8 @@ export const LanguagesFeat = () => {
         languages: myLanguages,
       })
     );
-    router.push("/build-resume/fill-data/languages");
+
+    // router.push("/");
   };
 
   useEffect(() => {
@@ -124,8 +126,8 @@ export const LanguagesFeat = () => {
       </SmallPreview>
 
       <BuildingResumeFooter
-        text={"Continue to experience"}
-        confCustoms={continueToExperience}
+        text={"Save & Download"}
+        confCustoms={saveAndDownload}
         handleBack={() => router.back}
       />
     </div>
