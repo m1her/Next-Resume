@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { TemplatesReveiw } from "./TemplatesReveiw";
 
 export const Main = () => {
   return (
@@ -48,8 +49,9 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full relative md:block hidden">
-        <Image src={"/cv.svg"} alt={"cv image"} fill sizes="2" />
+      <div className="w-full h-full relative md:flex items-center justify-center hidden lg:px-14">
+        {/* <Image src={"/cv.svg"} alt={"cv image"} fill sizes="2" /> */}
+        <TemplatesReveiw />
         <div className="w-2/3 aspect-square rounded-full bg-secondaryColor/30 blur-3xl -z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
       </div>
     </div>
