@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { linksData } from "./LinksData";
 import { debounce } from "@/utils/debounce";
+import { UploadResume } from "../UploadResume";
 
 export const ResumeSideNav = () => {
   const pathname = usePathname();
@@ -43,7 +44,8 @@ export const ResumeSideNav = () => {
       <Link href="/" className="text-primaryColor">
         Next Resume
       </Link>
-      <div className="flex md:flex-col flex-row justify-between gap-y-4 text-base md:mt-20 mt-4 ">
+      <div className="flex md:flex-col flex-row justify-between gap-y-4 text-base md:mt-16 mt-4 ">
+        <UploadResume />
         {linksData.map((item) => (
           <LinkItem
             key={item.number}

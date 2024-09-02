@@ -36,9 +36,9 @@ export const ClassicTemplate = () => {
         <div className="w-full flex justify-center">
           <div className="mt-4 text-black text-base flex justify-center gap-x-2 w-[500px] flex-wrap">
             <div>
-              {isDefault || !resumeData.number
+              {isDefault || !resumeData.phone
                 ? "+20 000 000 0000"
-                : resumeData.number}
+                : resumeData.phone}
             </div>
             |
             <div>

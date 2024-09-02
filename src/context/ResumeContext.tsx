@@ -26,7 +26,7 @@ interface ResumeData {
   job: string;
   location: string;
   name: string;
-  number: string;
+  phone: string;
   website: string;
   summary: string;
   skills: string[];
@@ -49,7 +49,7 @@ export const defaultResumeData: ResumeData = {
   job: "",
   location: "",
   name: "",
-  number: "",
+  phone: "",
   website: "",
   summary: "",
   skills: [],

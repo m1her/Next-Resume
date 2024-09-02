@@ -14,7 +14,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 type Inputs = {
   name: string;
   job: string;
-  number: string;
+  phone: string;
   email: string;
   location: string;
   website: string;
@@ -43,13 +43,13 @@ export const PersonalDetails = () => {
   };
 
   useEffect(() => {
-    const { email, job, location, name, number, website } = resumeData;
+    const { email, job, location, name, phone, website } = resumeData;
     reset({
       email,
       job,
       location,
       name,
-      number,
+      phone,
       website,
     });
   }, [reset, resumeData]);
@@ -94,10 +94,10 @@ export const PersonalDetails = () => {
             <TextInput
               id="phone_number"
               label="Phone Number"
-              name="number"
+              name="phone"
               placeholder="e.g. +20 0000000000"
-              error={!!errors.number}
-              errorMsg={errors.number?.message}
+              error={!!errors.phone}
+              errorMsg={errors.phone?.message}
               register={register}
               registerProps={{
                 required: "Phone is Required",
