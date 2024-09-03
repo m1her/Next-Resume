@@ -8,9 +8,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { TwoColumnsExp } from "./TwoColumnsExp";
+import { TwoColumnsPrj } from "./TwoColumnsPrj";
 
 export const TwoColumnsTemplate = () => {
   const path = usePathname();
+  const isDefault = path.split("/")[2] === "choose-template";
   const { resumeData } = useResumeContext();
   return (
     <div
@@ -27,8 +30,12 @@ export const TwoColumnsTemplate = () => {
       }}
     >
       <div id="header" className="text-center border-b mx-16 border-black pb-8">
-        <div className={`font-light text-6xl`}>Your Name</div>
-        <div className="text-black/80 text-2xl mt-2">Job Title</div>
+        <div className={`font-light text-6xl`}>
+          {isDefault || !resumeData.name ? "Your Name" : resumeData.name}
+        </div>
+        <div className="text-black/80 text-2xl mt-2">
+          {isDefault || !resumeData.job ? "Job Title" : resumeData.job}
+        </div>
       </div>
 
       <div className="grid grid-cols-5 w-full">
@@ -48,19 +55,27 @@ export const TwoColumnsTemplate = () => {
             <div className="text-xl font-medium">CONTACT</div>
             <div className="flex gap-x-2 items-center">
               <FontAwesomeIcon icon={faMobile} className="w-5 h-5" />
-              +20 000 000 0000
+              {isDefault || !resumeData.phone
+                ? "+20 000 000 0000"
+                : resumeData.phone}
             </div>
             <div className="flex gap-x-2 items-center">
               <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5" />
-              my-email@example.com
+              {isDefault || !resumeData.email
+                ? "my-email@example.com"
+                : resumeData.email}
             </div>
             <div className="flex gap-x-2 items-center">
               <FontAwesomeIcon icon={faGlobe} className="w-5 h-5" />
-              https://my-website.com
+              {isDefault || !resumeData.website
+                ? "https://www.linkedin.com/in/mns21"
+                : resumeData.website}
             </div>
             <div className="flex gap-x-2 items-center">
               <FontAwesomeIcon icon={faLocationDot} className="w-5 h-5" />
-              City, Country
+              {isDefault || !resumeData.location
+                ? "City, Country"
+                : resumeData.location}
             </div>
           </div>
 
@@ -69,23 +84,14 @@ export const TwoColumnsTemplate = () => {
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
           >
             <div className="text-xl font-medium">SKILLS</div>
-            <div className="flex flex-col gap-y-2">
-              <div className="font-medium">Skills Title</div>
-              <div className="flex items-center gap-x-4">
-                <div>SKill1</div>
-                <div>SKill2</div>
-                <div>SKill3</div>
-                <div>SKill4</div>
-              </div>
-            </div>
-            <div className="flex flex-col gap-y-2">
-              <div className="font-medium">Skills Title</div>
-              <div className="flex items-center gap-x-4">
-                <div>SKill1</div>
-                <div>SKill2</div>
-                <div>SKill3</div>
-                <div>SKill4</div>
-              </div>
+            <div className="flex items-center gap-x-1 flex-wrap">
+              {isDefault || !resumeData.skills
+                ? ["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"]
+                : resumeData.skills.map((skill, idx) => (
+                    <div className="" key={idx}>
+                      {skill},
+                    </div>
+                  ))}
             </div>
           </div>
 
@@ -93,13 +99,28 @@ export const TwoColumnsTemplate = () => {
             id="education2"
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
           >
-            <div className="text-xl font-medium">EDUCATION</div>
-            <div className="flex flex-col gap-y-2">
-              <div className="font-medium">Education Degree</div>
-              <div className="text-lg font-medium">Education University</div>
-              <div>from date - to date</div>
-              <div>grade result</div>
+            <div className="text-xl font-medium flex flex-col gap-y-4">
+              EDUCATION
             </div>
+            {!isDefault || resumeData?.education ? (
+              resumeData?.education.map((item, idx) => (
+                <div key={idx} className="flex flex-col gap-y-2">
+                  <div className="font-medium">{item.schoolDegree}</div>
+                  <div className="text-lg font-medium">{item.schoolName}</div>
+                  <div>{item.schoolLocation}</div>
+                  <div>
+                    {item.startDate} - {item.endDate}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="flex flex-col gap-y-2">
+                <div className="font-medium">Education Degree</div>
+                <div className="text-lg font-medium">Education University</div>
+                <div>Location</div>
+                <div>from date - to date</div>
+              </div>
+            )}
           </div>
 
           <div
@@ -108,14 +129,25 @@ export const TwoColumnsTemplate = () => {
           >
             <div className="text-xl font-medium">LANGUAGES</div>
             <div className="flex flex-col gap-y-2">
-              <div className="flex items-center gap-x-2">
-                <div>Language : </div>
-                <div>Level</div>
-              </div>
-              <div className="flex items-center gap-x-2">
-                <div>Language : </div>
-                <div>Level</div>
-              </div>
+              {!isDefault || resumeData?.languages ? (
+                resumeData?.languages.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-x-2">
+                    <div>{item.language} : </div>
+                    <div>{item.level}</div>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div className="flex items-center gap-x-2">
+                    <div>Language : </div>
+                    <div>Level</div>
+                  </div>
+                  <div className="flex items-center gap-x-2">
+                    <div>Language : </div>
+                    <div>Level</div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -127,11 +159,13 @@ export const TwoColumnsTemplate = () => {
           >
             <div className="text-xl font-medium">PROFILE</div>
             <div className="text-black">
-              Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh
-              ijkl mnopqr stuvw xyzab cdefg hijkl mnopq rstuvw xyza bcd efg hij
-              klmno pqrs tuvwx yzabc defgh ijkl mnop qrst uvwx yzab cdefg hijkl
-              mnopq rst uvwx yzabc defghi jklmnopq rs tuvwx yzab cdefgh ijklmn
-              opqrs tuvwx yzabcdefg hijkl mnopqrst uvwxy zabcde.
+              {isDefault || !resumeData.summary
+                ? `Ghjl klmno pqrs tuvwx yzabc defgh ijkl mnopqr stuvw xyzab cdefgh ijkl
+          mnopqr stuvw xyzab cdefg hijkl mnopq rstuvw xyza bcd efg hij klmno
+          pqrs tuvwx yzabc defgh ijkl mnop qrst uvwx yzab cdefg hijkl mnopq rst
+          uvwx yzabc defghi jklmnopq rs tuvwx yzab cdefgh ijklmn opqrs tuvwx
+          yzabcdefg hijkl mnopqrst uvwxy zabcde.`
+                : resumeData.summary}
             </div>
           </div>
 
@@ -140,64 +174,24 @@ export const TwoColumnsTemplate = () => {
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
           >
             <div className="text-xl font-medium">EXPERIENCE</div>
-            <div className="text-black">
-              <div className="flex justify-between">
-                <div className="text-xl font-medium">Experience Role</div>
-                <div className="text-black/70 text-sm">Location - Type</div>
-              </div>
-              <div className="text-black/70 text-sm flex justify-between">
-                <div>Company Name</div>
-                <div>Start – End</div>
-              </div>
-              <ul className="list-disc list-inside mt-2">
-                <li>
-                  Xyloz qwerty at 73.29%, completed a prime level achievement.
-                </li>
-                <li>
-                  Assembled modular frameworks with Zyx.js, enhancing project
-                  adaptability.
-                </li>
-                <li>
-                  Partnered with the strategy crew to craft intuitive and
-                  interactive designs.
-                </li>
-              </ul>
-              <div className="mt-2">
-                <div className="font-medium">Key Tech and Tools:</div>
-                <div className="text-black/70 text-sm">
-                  Skill1, Skill2, Skill3, Skill4, Skill5.
-                </div>
-              </div>
-            </div>
+            {isDefault || !resumeData.experience ? (
+              <TwoColumnsExp />
+            ) : (
+              resumeData.experience.map((item, idx) => (
+                <TwoColumnsExp key={idx} data={item} />
+              ))
+            )}
           </div>
 
           <div id="projects2">
             <div className="text-xl font-medium">PROJECTS</div>
-            <div className="mt-4 text-black">
-              <div className="flex justify-between">
-                <div className="text-xl font-medium">Project Title</div>
-                <div className="text-black/70 text-sm">Complete Date</div>
-              </div>
-              <div className="text-sm mt-2">
-                Wqerui opasd fjkl zxcvbnm rtyuio p;lkjh gfdsa qwer asdfg hjuik
-                mnvb cdefgh klmno pqrs tuv wxyz abc def ghi jkl mnop qrst uvw
-                asdwhh.
-              </div>
-              <div className="flex flex-col mt-2">
-                <div className="font-medium">Key Features:</div>
-                <ul className="list-disc list-inside mt-1 text-sm">
-                  <li>Qwerty zxcvb asd fghj klm nopq rty uio p;lk jhg fds a</li>
-                  <li>Vbnm asdf ghjk lkjh p;io yu trvw xz abc def gh ijk</li>
-                  <li>Lkjh qwer asd fghj k;l zxcv bnma sdfgh jkl mnop qwer</li>
-                </ul>
-              </div>
-              <div className="mt-2">
-                <div className="font-medium text-sm">Key Tech and Tools:</div>
-                <div className="text-black/80 text-sm">
-                  Skill1, Skill2, Skill3, Skill4, Skill5.
-                </div>
-              </div>
-            </div>
+            {isDefault || !resumeData.projects ? (
+              <TwoColumnsPrj />
+            ) : (
+              resumeData.projects.map((item, idx) => (
+                <TwoColumnsPrj key={idx} data={item} />
+              ))
+            )}
           </div>
         </div>
       </div>

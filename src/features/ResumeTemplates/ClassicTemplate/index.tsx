@@ -1,10 +1,11 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { useResumeContext } from "@/context/ResumeContext";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
 import { ClassicTempExp } from "./ClassicTempExp";
 import { ClassicTempEdu } from "./ClassicTempEdu";
+import { ClassicTempPrj } from "./ClassicTempPrj";
 
 export const ClassicTemplate = () => {
   const path = usePathname();
@@ -136,30 +137,13 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Projects
         </div>
-        <div className="mt-4">
-          <div className="flex justify-between">
-            <div className="text-lg font-medium">Project Title</div>
-            <div className="text-black/70 text-sm">Complete Date</div>
-          </div>
-          <div className="mt-2 text-black">
-            Wqerui opasd fjkl zxcvbnm rtyuio p;lkjh gfdsa qwer asdfg hjuik mnvb
-            cdefgh klmno pqrs tuv wxyz abc def ghi jkl mnop qrst uvw asdwhh.
-          </div>
-          <div className="flex flex-col mt-2">
-            <div className="font-medium">Key Features:</div>
-            <ul className="list-disc list-inside mt-1 text-black">
-              <li>Qwerty zxcvb asd fghj klm nopq rty uio p;lk jhg fds a</li>
-              <li>Vbnm asdf ghjk lkjh p;io yu trvw xz abc def gh ijk</li>
-              <li>Lkjh qwer asd fghj k;l zxcv bnma sdfgh jkl mnop qwer</li>
-            </ul>
-          </div>
-          <div className="mt-2">
-            <div className="font-medium">Key Tech and Tools:</div>
-            <div className="text-black/70 text-sm">
-              Skill1, Skill2, Skill3, Skill4, Skill5.
-            </div>
-          </div>
-        </div>
+        {isDefault || !resumeData.projects ? (
+          <ClassicTempPrj />
+        ) : (
+          resumeData.projects.map((item, idx) => (
+            <ClassicTempPrj key={idx} data={item} />
+          ))
+        )}
       </div>
 
       <div id="languages" className="mt-8">
@@ -167,26 +151,43 @@ export const ClassicTemplate = () => {
           Languages
         </div>
         <div className="mt-4 text-black grid grid-cols-2 gap-x-8">
-          <div className="flex items-center">
-            <FontAwesomeIcon
-              icon={faCheck}
-              className="text-green-500 w-4 h-4 mr-2"
-            />
-            <div>
-              <span>Language</span>
-              <span className="text-black/70 ml-2">Level</span>
-            </div>
-          </div>
-          <div className="flex items-center">
-            <FontAwesomeIcon
-              icon={faCheck}
-              className="text-green-500 w-4 h-4 mr-2"
-            />
-            <div>
-              <span>Language</span>
-              <span className="text-black/70 ml-2">Level</span>
-            </div>
-          </div>
+          { !isDefault || resumeData?.languages ? (
+            resumeData?.languages.map((item, idx) => (
+              <div key={idx} className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="text-green-500 w-4 h-4 mr-2"
+                />
+                <div>
+                  <span>{item.language}</span>
+                  <span className="text-black/70 ml-2">{item.level}</span>
+                </div>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="text-green-500 w-4 h-4 mr-2"
+                />
+                <div>
+                  <span>Language</span>
+                  <span className="text-black/70 ml-2">Level</span>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="text-green-500 w-4 h-4 mr-2"
+                />
+                <div>
+                  <span>Language</span>
+                  <span className="text-black/70 ml-2">Level</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

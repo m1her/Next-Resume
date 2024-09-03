@@ -1,27 +1,23 @@
+import { useResumeContext } from "@/context/ResumeContext";
 import { textParsing } from "@/utils/textParsing";
-import React, { useState, ChangeEvent, MouseEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 
 export const UploadResume: React.FC = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const { setResumeData } = useResumeContext();
   const [uploading, setUploading] = useState<boolean>(false);
-  const [uploadStatus, setUploadStatus] = useState<string>("");
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFile(e.target.files[0]);
+      handleUpload(e.target.files[0]);
     }
   };
 
-  const handleUpload = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
+  const handleUpload = async (file: File) => {
     if (!file) {
-      setUploadStatus("No file selected");
       return;
     }
 
     setUploading(true);
-    setUploadStatus("");
 
     const formData = new FormData();
     formData.append("file", file);
@@ -37,16 +33,22 @@ export const UploadResume: React.FC = () => {
       }
 
       const result = await response.json();
-      if (result.error) {
-        setUploadStatus(`Error: ${result.error}`);
-      } else {
-        setUploadStatus("Upload successful!");
-        console.log(textParsing(result.text));
-      }
+      const { email, website, phone, location, name, job, summary, skills } =
+        textParsing(result.text);
+      setResumeData((prev) => ({
+        ...prev,
+        email,
+        website,
+        phone,
+        location,
+        name,
+        job,
+        summary,
+        skills,
+      }));
+      
     } catch (error) {
-      setUploadStatus(
-        `Error: ${error instanceof Error ? error.message : "Unknown error"}`
-      );
+      `Error: ${error instanceof Error ? error.message : "Unknown error"}`;
     } finally {
       setUploading(false);
     }
@@ -66,17 +68,6 @@ export const UploadResume: React.FC = () => {
       >
         {uploading ? "Uploading..." : "UPLOAD"}
       </label>
-      {file && (
-        <button
-          onClick={handleUpload}
-          className="w-full mt-2 bg-primaryColor text-white px-4 py-2 rounded text-center font-bold hover:bg-primaryColorDark transition-all duration-300"
-        >
-          Submit
-        </button>
-      )}
-      {uploadStatus && (
-        <p className="mt-2 text-center text-red-500">{uploadStatus}</p>
-      )}
     </div>
   );
 };

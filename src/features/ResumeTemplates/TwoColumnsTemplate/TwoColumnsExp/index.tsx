@@ -1,32 +1,28 @@
 import { ExperienceCard } from "@/features/building/ExperienceFeat/ExpDataTypes";
 import React from "react";
 
-export const ClassicTempExp = ({ data }: { data?: ExperienceCard }) => {
-  //const points = data.expBullitPoints.map((item) => item.text);
+export const TwoColumnsExp = ({ data }: { data?: ExperienceCard }) => {
   return (
-    <div className="mt-4">
+    <div className="text-black">
       <div className="flex justify-between">
-        <div className="text-lg font-medium">
-          {data?.companyName ? data?.companyName : "Company Name"}
-        </div>
-        <div className="text-black/70">
-          {data?.companyLocation ? data?.companyLocation : "Location"}
-        </div>
-      </div>
-      <div className="text-black/70 text-sm flex justify-between">
-        <div>
+        <div className="text-xl font-medium">
           {data?.companyPositionRole
             ? data?.companyPositionRole
             : "Experience Role"}
         </div>
-
+        <div className="text-black/70 text-sm">
+          {data?.companyLocation ? data?.companyLocation : "Location"}
+        </div>
+      </div>
+      <div className="text-black/70 text-sm flex justify-between">
+        <div>{data?.companyName ? data?.companyName : "Company Name"}</div>
         <div>
           {data?.startDate
             ? data?.startDate + " - " + data?.endDate
             : "Start – End"}
         </div>
       </div>
-      <ul className="list-disc list-inside mt-2 text-black">
+      <ul className="list-disc list-inside mt-2">
         {data?.expBullitPoints ? (
           data?.expBullitPoints.map((item, idx) => (
             <li key={idx}>{item.text}</li>

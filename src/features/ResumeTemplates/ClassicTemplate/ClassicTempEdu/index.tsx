@@ -17,7 +17,7 @@ export const ClassicTempEdu = ({ data }: { data?: EducationCard }) => {
           {data?.schoolDegree ? data?.schoolDegree : "Education Degree"}
         </div>
         <div className="text-black/70 text-sm">
-          {data?.startDate ? data?.startDate + data?.endDate : "Start – End"}
+          {data?.startDate ? data?.startDate + " - " + data?.endDate : "Start – End"}
         </div>
       </div>
       <ul className="list-disc list-inside mt-1 text-black">
