@@ -83,7 +83,7 @@ export const ClassicTemplate = () => {
           Skills
         </div>
         <div className="mt-4 text-black grid grid-cols-3 gap-x-8">
-          {isDefault || !resumeData.skills
+          {isDefault || resumeData.skills.length == 0
             ? ["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"].map(
                 (skill, idx) => (
                   <div className="flex items-center" key={idx}>
@@ -111,7 +111,7 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Experience
         </div>
-        {isDefault || !resumeData.experience ? (
+        {isDefault || resumeData.experience.length == 0 ? (
           <ClassicTempExp />
         ) : (
           resumeData.experience.map((item, idx) => (
@@ -124,7 +124,7 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Educations
         </div>
-        {isDefault || !resumeData.education ? (
+        {isDefault || resumeData.education.length == 0 ? (
           <ClassicTempEdu />
         ) : (
           resumeData.education.map((item, idx) => (
@@ -137,7 +137,7 @@ export const ClassicTemplate = () => {
         <div className="font-semibold text-lg border-b-2 pb-2 border-black">
           Projects
         </div>
-        {isDefault || !resumeData.projects ? (
+        {isDefault || resumeData.projects.length == 0 ? (
           <ClassicTempPrj />
         ) : (
           resumeData.projects.map((item, idx) => (
@@ -151,20 +151,7 @@ export const ClassicTemplate = () => {
           Languages
         </div>
         <div className="mt-4 text-black grid grid-cols-2 gap-x-8">
-          { !isDefault || resumeData?.languages ? (
-            resumeData?.languages.map((item, idx) => (
-              <div key={idx} className="flex items-center">
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className="text-green-500 w-4 h-4 mr-2"
-                />
-                <div>
-                  <span>{item.language}</span>
-                  <span className="text-black/70 ml-2">{item.level}</span>
-                </div>
-              </div>
-            ))
-          ) : (
+          {isDefault || resumeData.languages.length == 0 ? (
             <>
               <div className="flex items-center">
                 <FontAwesomeIcon
@@ -187,6 +174,19 @@ export const ClassicTemplate = () => {
                 </div>
               </div>
             </>
+          ) : (
+            resumeData?.languages.map((item, idx) => (
+              <div key={idx} className="flex items-center">
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="text-green-500 w-4 h-4 mr-2"
+                />
+                <div>
+                  <span>{item.language}</span>
+                  <span className="text-black/70 ml-2">{item.level}</span>
+                </div>
+              </div>
+            ))
           )}
         </div>
       </div>

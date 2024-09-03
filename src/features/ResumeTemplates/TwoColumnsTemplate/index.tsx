@@ -59,13 +59,13 @@ export const TwoColumnsTemplate = () => {
                 ? "+20 000 000 0000"
                 : resumeData.phone}
             </div>
-            <div className="flex gap-x-2 items-center">
+            <div className="flex gap-x-2 items-center break-all">
               <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5" />
               {isDefault || !resumeData.email
                 ? "my-email@example.com"
                 : resumeData.email}
             </div>
-            <div className="flex gap-x-2 items-center">
+            <div className="flex gap-x-2 items-center break-all">
               <FontAwesomeIcon icon={faGlobe} className="w-5 h-5" />
               {isDefault || !resumeData.website
                 ? "https://www.linkedin.com/in/mns21"
@@ -85,8 +85,8 @@ export const TwoColumnsTemplate = () => {
           >
             <div className="text-xl font-medium">SKILLS</div>
             <div className="flex items-center gap-x-1 flex-wrap">
-              {isDefault || !resumeData.skills
-                ? ["Skill", "Skill", "Skill", "Skill", "Skill", "Skill"]
+              {isDefault || resumeData.skills.length == 0
+                ? "Skill, Skill, Skill, Skill, Skill, Skill"
                 : resumeData.skills.map((skill, idx) => (
                     <div className="" key={idx}>
                       {skill},
@@ -102,7 +102,14 @@ export const TwoColumnsTemplate = () => {
             <div className="text-xl font-medium flex flex-col gap-y-4">
               EDUCATION
             </div>
-            {!isDefault || resumeData?.education ? (
+            {isDefault || resumeData.skills.length == 0 ? (
+              <div className="flex flex-col gap-y-2">
+                <div className="font-medium">Education Degree</div>
+                <div className="text-lg font-medium">Education University</div>
+                <div>Location</div>
+                <div>from date - to date</div>
+              </div>
+            ) : (
               resumeData?.education.map((item, idx) => (
                 <div key={idx} className="flex flex-col gap-y-2">
                   <div className="font-medium">{item.schoolDegree}</div>
@@ -113,13 +120,6 @@ export const TwoColumnsTemplate = () => {
                   </div>
                 </div>
               ))
-            ) : (
-              <div className="flex flex-col gap-y-2">
-                <div className="font-medium">Education Degree</div>
-                <div className="text-lg font-medium">Education University</div>
-                <div>Location</div>
-                <div>from date - to date</div>
-              </div>
             )}
           </div>
 
@@ -129,14 +129,7 @@ export const TwoColumnsTemplate = () => {
           >
             <div className="text-xl font-medium">LANGUAGES</div>
             <div className="flex flex-col gap-y-2">
-              {!isDefault || resumeData?.languages ? (
-                resumeData?.languages.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-x-2">
-                    <div>{item.language} : </div>
-                    <div>{item.level}</div>
-                  </div>
-                ))
-              ) : (
+              {isDefault || resumeData?.languages.length == 0 ? (
                 <>
                   <div className="flex items-center gap-x-2">
                     <div>Language : </div>
@@ -147,6 +140,13 @@ export const TwoColumnsTemplate = () => {
                     <div>Level</div>
                   </div>
                 </>
+              ) : (
+                resumeData?.languages.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-x-2">
+                    <div>{item.language} : </div>
+                    <div>{item.level}</div>
+                  </div>
+                ))
               )}
             </div>
           </div>
@@ -174,7 +174,7 @@ export const TwoColumnsTemplate = () => {
             className="flex flex-col pb-8 gap-y-6 text-sm border-b-2 border-dotted border-gray-500"
           >
             <div className="text-xl font-medium">EXPERIENCE</div>
-            {isDefault || !resumeData.experience ? (
+            {isDefault || resumeData.experience.length == 0 ? (
               <TwoColumnsExp />
             ) : (
               resumeData.experience.map((item, idx) => (
@@ -185,7 +185,7 @@ export const TwoColumnsTemplate = () => {
 
           <div id="projects2">
             <div className="text-xl font-medium">PROJECTS</div>
-            {isDefault || !resumeData.projects ? (
+            {isDefault || resumeData.projects.length == 0 ? (
               <TwoColumnsPrj />
             ) : (
               resumeData.projects.map((item, idx) => (
