@@ -47,9 +47,6 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-textColor font-urbanist font-medium text-lg">
-        © 2024, Bold Limited. All rights reserved.
-      </div>
     </div>
   );
 };
